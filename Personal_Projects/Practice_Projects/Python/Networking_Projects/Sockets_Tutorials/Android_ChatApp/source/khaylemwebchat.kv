@@ -1,0 +1,91 @@
+<MyRoot>
+
+    ip_text: ip_text
+    username_text: username_text
+    connect_btn: connect_btn
+    chat_text: chat_text
+    message_text: message_text
+    send_btn: send_btn
+    connection_grid: connection_grid
+
+    orientation: "vertical"
+    size_hint: (1, 1)
+    padding: 0, 5
+    spacing: 5
+    GridLayout:
+        id: connection_grid
+        rows: 1
+        cols: 2
+        size_hint: (1, 0.1)
+        padding: 5
+        spacing: 5
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            Label:
+                text: "Server IP"
+                font_size: 17
+                color: 0.92, 0.45, 0, 1
+                size_hint: (1, 0.25)
+            TextInput:
+                id: ip_text
+                size_hint: (1, 0.75)
+                font_size: 17
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            Label:
+                text: "Username"
+                font_size: 17
+                color: 0.92, 0.45, 0, 1
+                size_hint: (1, 0.25)
+            TextInput:
+                id: username_text
+                size_hint: (1, 0.75)
+                font_size: 17
+
+    Button:
+        id: connect_btn
+        text: "Connect"
+        font_size: 24
+        # size: 100, 50
+        size_hint: (1, 0.07)
+        on_press:
+            root.connect_to_server()
+    
+    Label:
+        text: "Chat History"
+        font_size: 17
+        size_hint: (1, 0.05)
+        color: 0.92, 0.45, 0, 1
+
+    TextInput:
+        id: chat_text
+        size_hint: (1, 0.3)
+        multiline: True
+        font_size: 17
+        readonly: True
+        disabled: True
+
+    Label:
+        text: "Your Message"
+        font_size: 17
+        size_hint: (1, 0.05)
+        color: 0.92, 0.45, 0, 1
+
+    TextInput:
+        id: message_text
+        size_hint: (1, 0.1)
+        multiline: True
+        font_size: 17
+        # readonly: True
+        disabled: True
+        # on_focus: root.update_chat()
+    
+    Button:
+        id: send_btn
+        text: "Send"
+        font_size: 24
+        size_hint: (1, 0.07)
+        on_press: root.send_message()
+        disabled: True

@@ -1,0 +1,34 @@
+<SubWidgets>
+    Button:
+        size: 25, 250
+        pos: 50, 50
+        text: "Press for Popup!"
+        on_release: root.btn()
+
+
+
+<Button>:
+    color: (0.7, 0.0, 0.0, 1.0)
+
+<Widgets>
+    flVar: fl
+    size: 500, 500
+    pos: 250, 250
+    FloatLayout:
+        id: fl
+        Label: 
+            text: "here"
+            pos: 70, 70
+        Button:
+            size: 250, 250
+    
+
+<PopupWindow>:
+    Label:
+        text: "You've pressed the Button!"
+        size_hint: (0.6, 0.2)
+        pos_hint: {"x": 0.2, "top": 1}
+    Button:
+        text: "Press To Exit!"
+        size_hint: (0.8, 0.2)
+        pos_hint: {"x": 0.1, "y": 0.1}

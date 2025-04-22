@@ -1,0 +1,44 @@
+#   Setting properties inherited by all corresponding widgets
+
+#   Every property defined below applies for every Button
+<Button>
+    # font_size: 32
+    background_normal: ''
+    background_color: (0.4, 0.1, 0.2, 1)
+
+<TextInput>
+    background_color: (0.3, 0.25, 0.35, 1)
+
+
+#   Keep in mind that the font_size defined for Labels
+#   is inherited by Buttons
+<Label>
+    font_size: 26
+
+
+<MyLayout>
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        padding: 10
+        spacing: 10        
+
+        Label:
+            text: "First Name"
+        
+        TextInput:
+            multiline: False
+
+        Label:
+            text: "Last Name"
+        
+        TextInput:
+            multiline: False
+
+        Button:
+            text: "Submit"
+        Button:
+            text: "Clear"
+            #   Can still define the colour for a specific button
+            #   it will overwrite the default widget for Buttons property defined above
+            background_color: (0.6, 0.2, 0.2, 1)

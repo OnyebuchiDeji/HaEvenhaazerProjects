@@ -1,0 +1,125 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <title>Canvas Demo</title>
+        <!-- <script type="text/javascript" src="canvas-script.js" defer></script> -->
+    </head>
+
+    <body>
+        <!-- 
+            This app is peng!
+            You can click on the bubbles to make them pop!
+         -->
+        <h2 style="text-align:center">
+            Pop Those Bubbles!
+        </h2>
+        <canvas id="mycanvas" width=960 height=540>
+            Unsupported Element.
+        </canvas>
+    </body>
+    <script>
+        var mycanvas = document.getElementById("mycanvas");
+        var ctx = mycanvas.getContext("2d");
+        var num = 50;
+        var bubbles = new Array;
+        var g_mousePos  = {x: 0, y: 0};
+        var bgGradient;
+        var r360 = Math.PI * 2;
+
+        /* Useful Function to Get Mouse Co-ordinates */
+        function getCursorPosition(canvas, event)
+        {
+            //  This is gets the bounding box values of the canvas element.
+            //  It literally gets all position parameters it has relative to the window
+            var rect = canvas.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+            return {x, y};
+        }
+
+        /* Useful function to get a random integer number */
+        function randInt(max)
+        {
+            return Math.floor(Math.random() * max);
+        }
+
+        function setup()
+        {
+            //  For the number of circles
+            for (var i = 0; i < num; i++)
+            {  
+                    //  Get their random RGB values
+                var r = randInt(128) + 128;
+                var g = randInt(128) + 128;
+                var b = randInt(128) + 128;
+                bubbles[i] = {
+                    x: randInt(mycanvas.width),
+                    y: randInt(mycanvas.height),
+                    r: randInt(70) + 10,
+                    c: "rgb(" + r + "," + g + "," + b + ")",
+                    mouse: false
+                }
+            }
+            //  For the canvas's gradient color effect
+            bgGradient = ctx.createLinearGradient(0, 0, 0, mycanvas.height);
+            bgGradient.addColorStop(0, "rgb(255, 250, 0)");
+            bgGradient.addColorStop(1, "rgb(50, 40, 8)");
+            drawCanvas();
+            mycanvas.addEventListener("mousemove", updateCanvas);
+            mycanvas.addEventListener("click", popBubble);
+        }
+
+        function drawCanvas()
+        {
+            //  Legit sets the background color of screen
+            ctx.fillStyle = bgGradient;
+            //  Legit applies that set color to the specified area
+            ctx.fillRect(0, 0, mycanvas.width, mycanvas.height);
+            for (var i = 0; i < bubbles.length; i++)
+            {
+                ctx.beginPath();
+                ctx.fillStyle = bubbles[i].c;
+                //  Draw circles in appropriate positions
+                ctx.arc
+                //  Note that starting angle is 0, and ending angle is 360 in radians 
+                ctx.arc(bubbles[i].x, bubbles[i].y, bubbles[i].r, 0, r360, false);
+                /**
+                 * isPointInPath checks whether the point pointed to by the mouse...
+                 * is on or within the path traced to draw the circle 
+                */
+                if (ctx.isPointInPath(g_mousePos.x, g_mousePos.y))
+                {
+                    bubbles[i].mouse = true;
+                    ctx.fillstyle = "black";
+                }
+                else
+                {
+                    bubbles[i].mouse = false;
+                }
+                ctx.fill();
+            }
+        }
+
+        function updateCanvas(e)
+        {
+            g_mousePos = getCursorPosition(mycanvas, e);
+            ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+            drawCanvas();
+        }
+
+        function popBubble(e)
+        {
+            for (var i = 0; i < bubbles.length; i++)
+            {
+                if (bubbles[i].mouse == true)
+                {
+                    bubbles.splice(i, 1);
+                    break;
+                }
+            }
+            ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+            drawCanvas();
+        }
+
+        setup();
+    </script>
+</html>

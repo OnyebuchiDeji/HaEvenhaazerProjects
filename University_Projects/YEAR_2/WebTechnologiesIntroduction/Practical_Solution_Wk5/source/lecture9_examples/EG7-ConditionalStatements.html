@@ -1,0 +1,32 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Conditional Statements</title>
+    </head>
+    <body>
+        <?php
+            //  IF ELSE IF ELSE statement
+            $x = 5;
+            if ($x == 5)
+            {
+                echo 'The variable $x has value 5!';
+            }
+            else if ($x == 3)
+            {
+                echo 'The variable $x has value 5!';
+            }
+            else
+            {
+                echo 'The variable $x has value' . String($x);
+            }
+
+            //  Switch Statements:
+            switch($x)
+            {
+                case 5: echo "x is 5"; break;
+                case 4: echo "x is 4"; break;
+                case 3: echo "x is 3"; break;
+                default: echo "The heck is x?"
+            }
+        ?>
+    </body>
+</html>

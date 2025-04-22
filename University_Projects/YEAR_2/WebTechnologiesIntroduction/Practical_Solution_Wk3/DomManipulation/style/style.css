@@ -1,0 +1,145 @@
+:root
+{
+    --body-bg: rgb(17, 34, 51);
+    --font-color: rgb(196, 196, 196);
+
+    --paragraph_bg_odd: rgb(17, 16, 51);
+    --paragraph_bg_even: rgb(15, 16, 34);
+    
+    --header_col: rgb(200, 190, 210);
+    --unordered_list_col: rgb(13, 35, 65);
+}
+
+*
+{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body
+{
+    margin: 0;
+    background: var(--body-bg);
+    color: var(--font-color);
+
+}
+
+h1
+{
+    text-align: center;
+    text-decoration: solid;
+    font-style: normal;
+    color: var(--font-color);
+    /* z-index: 200; */
+}
+
+h3
+{
+    text-align: center;
+    text-decoration: solid;
+    font-style:oblique;
+    color: var(--font-color);
+}
+
+#section-left
+{
+    padding: 0px;
+    margin: 0px 0px 0px 5px;
+    display: inline-block;
+    width: calc(65% - 5px);
+    max-width: (67% - 5px);
+    border: 3px solid black;
+    
+    text-align: left;
+}
+
+#section-left .paragraph
+{
+    background-color: var(--paragraph_bg_odd);
+    padding: 5px;
+    margin: 0px;
+}
+
+#section-left .paragraph:nth-child(even)
+{
+    background-color: var(--paragraph_bg_even);
+}
+
+
+#section-left ul
+{
+    background-color: var(--unordered_list_col);
+    width: calc(100% - 0px);
+    /* height: 100%; */
+    margin: 0px 0px 0px 0px;
+    padding: 0px 5px 0px 5px;
+    text-align: left;
+    text-decoration: solid;
+    list-style:inside;
+}
+
+#section-left ul li
+{
+    padding: 10px 0px 10px 0px;
+    margin: 0px;
+}
+
+
+em
+{
+    text-decoration: solid;
+    color: rgb(204, 120, 205);
+    /* font-style: oblique; */
+}
+
+i
+{
+    text-decoration: solid;
+    color: rgb(180, 120, 205);
+    font-style: italic;
+}
+em i
+{
+    text-decoration: solid;
+    color: rgb(180, 120, 205);
+    font-style: italic;
+}
+
+#section-right
+{
+    display: inline-block;
+    position: absolute;
+    width: 35%;
+    max-width: 38%;
+    height: 75%;
+    border: 3px solid black;
+}
+
+
+.form-body
+{
+    display: block;
+    /* grid-column: 2; */
+    grid-template-rows: 3;
+    border: 3px solid red;
+    justify-content: space-between;
+}
+
+.form-body .form-group
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.form-body .form-group input
+{
+    /* box-sizing: border-box; */
+    position: absolute;
+    width: calc(65% - 10px);
+    /* left: 0px; */
+    right: 5px;
+    /* top right bottom left */
+    margin: 0px 0px 0px 10px;
+    z-index: 200;
+}

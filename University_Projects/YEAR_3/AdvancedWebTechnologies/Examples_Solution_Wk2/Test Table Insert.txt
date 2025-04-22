@@ -1,0 +1,4 @@
+INSERT INTO `Test`(`CustomerID`, `CustomerName`, `ContactName`, `Address`, `City`, `PostalCode`, `Country`) VALUES (89, 'Greenfield Farm', 'Richard Draemnund', '305 - 14th Ave. S. Suite 3B', 'Kial', '10028', 'Uganda'),
+(90, 'Wilman Kala', 'Matti Karttunen', 'Keskuskatu 45', 'Helsinki', 21240, 'Nepal'),
+(91, 'Shokaim', 'Ethel Thumen' 'ul Sumiriea 78', 'Kushin', 018002, 'Lebanon'),
+(92, 'Cardoniy', 'Ethreben' 'Skagen 21', 'Skadani', 5070, 'Norway');

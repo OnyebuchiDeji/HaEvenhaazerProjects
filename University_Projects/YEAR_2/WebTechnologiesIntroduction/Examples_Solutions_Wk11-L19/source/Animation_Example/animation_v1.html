@@ -1,0 +1,88 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Animation App</title>
+    </head>
+
+    <body>
+        <h2>Animation App</h2>
+        <!-- 
+			This is the first version.
+         -->
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black;">
+            If the canvas could be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+            // mycanvas.width = "960"; mycanvas.height = "540";
+            ctx.strokeStyle = "green";
+            var r360 = Math.PI * 2;
+
+            var balls = new Array;
+
+            /* Useful Function to get Mouse Co-ordinates */ 
+            function getCursorPosition(canvas, event)
+            {
+                var rect = canvas.getBoundingClientRect();
+                var x = event.clientX - rect.left;
+                var y = event.clientY - rect.top;
+                console.log("x: " + x + " y: " + y);
+                return{x, y};
+            } 
+            //  Second way
+            function getCursorPosition_v2(event)
+            {
+                var x = event.offsetX;
+                var y = event.offsetY;
+                console.log("x: " + x + " y: " + y);
+                return{x, y};
+            }
+
+            /*  Make a ball when mouse is pressed */
+            function mousedown(e)
+            {
+                mousePos = getCursorPosition(mycanvas, e);
+                balls[balls.length] = {
+                    //  Add a new ball to array
+                    x: mousePos.x,
+                    y: mousePos.y,
+                    vx: (Math.random() - 0.5) * 8, //  Give it velocity
+                    vy: (Math.random() - 0.5) * 8,
+                    move: function()
+                    {
+                        //  Define an update function
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x > mycanvas.width) this.x -= mycanvas.width;
+                        if (this.x < 0) this.x += mycanvas.width;
+                        if (this.y > mycanvas.height) this.y -= mycanvas.height;
+                        if (this.y < 0) this.y += mycanvas.height;
+                    }
+                }
+            }
+
+            //  A function to clear the canvas and draw the balls
+            function draw()
+            {
+                //  Clear the canvas
+                ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+
+                //  Iterate over array; update positions and draw
+                for (var i = 0; i < balls.length; i++)
+                {
+                    balls[i].move();
+                    ctx.beginPath();
+                    ctx.arc(balls[i].x, balls[i].y, 20, 0, r360);
+                    ctx.stroke();
+                }
+            }
+
+            //  Add event handlers
+            window.setInterval(draw, 20);
+            mycanvas.addEventListener("mousedown", mousedown);
+    
+        </script>
+    </body>
+</html>

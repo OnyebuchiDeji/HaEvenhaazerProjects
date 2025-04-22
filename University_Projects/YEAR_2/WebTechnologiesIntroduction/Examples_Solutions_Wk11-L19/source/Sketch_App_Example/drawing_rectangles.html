@@ -1,0 +1,35 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Drawing Rectangles</title>
+    </head>
+
+    <body>
+        <h2>Drawing Arcs</h2>
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black">
+            If the canvas could be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.moveTo(400, 400);
+            ctx.lineTo(500, 400);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(400, 500);
+            ctx.closePath();        
+            ctx.stroke();
+            
+            ctx.lineWidth = 3;
+            ctx.rect(400, 400, 100, 100);
+            ctx.strokeStyle = "purple";
+            ctx.stroke();
+
+            
+            ctx.fillStyle="blue";
+            // ctx.fillRect is a way of making another type of rect
+            ctx.fillRect(100, 100, 100, 100);
+        </script>
+    </body>
+</html>

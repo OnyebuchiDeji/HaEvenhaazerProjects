@@ -1,0 +1,59 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <title>Form HTML</title>
+        <style>
+            #form-body
+            {
+                border: 2px solid blueviolet;
+                width: 65%;
+                align-content: center;
+                padding: 5px 5px;
+                /* align-items: center; */
+            }
+
+            #form-body input
+            {
+                width: 85%;
+            }
+
+            #form-body select option
+            {
+                width: 85%;
+            }
+
+            #form-body input.button
+            {
+                /* width: 15px; */
+                width: 12%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form action="list.php" method="post" id="form-body">
+            <h1>Submit a Module Entry</h2>
+            
+            Id<br>
+            <input type="text" name="Id" placeholder="Please enter the id of the module">
+            <br><br>
+
+            Name<br>
+            <input type="text" name="name" placeholder="Please enter the name of the module">
+            <br><br>
+
+            Year<br>
+            <select id="year" name="year" value="Year 1">
+                <option value="Year 1">Year 1</option>
+                <option value="Year 2">Year 2</option>
+                <option value="Year 3">Year 3</option>
+            </select>
+            <br><br>
+
+            <input type="submit" value="Submit" class="button">
+            <input type="reset" class="button">     
+
+        </form>
+
+
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Booleans</title>
+    </head>
+    <body>
+        <?php
+        //  Prints "True:1 Length: 1 --- note that the true keyword evaluates to 1 "
+            echo "True: " . true . "Length: " . strlen(true);
+        //  Prints "False: Length: 0 --- but nite here that the false keyword evaluates to nothing"
+        //  But its length gives the appropriate value
+            echo "True: " . true . "Length: " . strlen(false);
+        ?>
+
+        <?php
+            $a = false;
+
+            //  Prints 1, true
+            echo ($a==false);
+
+            //  Prints 1, true
+            echo empty($a);
+
+            //  Prints 1. The == operator cannot distinguish between 0 and false:
+            echo ("0" == $a);
+        ?>
+    </body>
+</html>

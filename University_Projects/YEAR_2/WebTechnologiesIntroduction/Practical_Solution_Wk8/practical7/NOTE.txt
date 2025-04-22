@@ -1,0 +1,11 @@
+Done on SAT-16-March-2024
+
+In this project Ajax and Jquery are used together:
+Ajax is used to make HTTPS requests and Ajax is used to manipulate the DOM...
+to affect it based on those requests.
+
+Part 1 shows the solving of the number of tasks for the first part of the practical.
+Part 2 for the second set tasks.
+And the corresponding tasks are indicated.
+
+Comment added: Mon-18-Mar-2024

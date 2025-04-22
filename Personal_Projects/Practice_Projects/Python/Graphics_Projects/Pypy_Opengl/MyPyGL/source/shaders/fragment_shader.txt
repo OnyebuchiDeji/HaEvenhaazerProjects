@@ -1,0 +1,19 @@
+#version 330 core
+
+in vec3 fragmentColor;
+in vec2 fragmentTextureCoord;
+
+out vec4 color;
+
+//  Whenever a texture is passed to the shader, it can only be displayed as a 2D sampler object...
+//  it is known as an opaque data type: opengl does not tell us what it is or where it is from.
+//  Its used in the texture function to sample the texture at a given coordinate
+uniform sampler2D imageTexture;
+
+void main()
+{
+    //  texture() is an in-built opengl function. It takes the sampler being worked with and...
+    //  the texture coordinate to be sampled
+    //  This tints the sample coordinate as the respective channels of the texture are multiplied by the vec4
+    color = vec4(fragmentColor, 1.0) * texture(imageTexture, fragmentTextureCoord);
+}

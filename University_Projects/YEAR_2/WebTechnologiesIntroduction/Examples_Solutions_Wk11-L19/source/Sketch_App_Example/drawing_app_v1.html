@@ -1,0 +1,98 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Sketch App</title>
+    </head>
+
+    <body>
+        <h2>Sketch App</h2>
+        <!-- 
+            This version of the drawing app uses the events to commence drawing.
+            When the mouse is pressed, a boolean is made True which allows movement to draw lines.
+            When the mouse button is released, this boolean is changed back to false... so mouse motion does not cause drawing.
+            In the second version, anytime the mouse is pressed, then the move event listener is registered...
+            hence motion produces line drawing.
+            But when  mouse button is released the event listener is destroyed.
+            The second version should be more costly than this first. 
+
+            Notice that there are two ways of getting the actual mouse position in the canvas...
+            only.
+            The first
+         -->
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black">
+            If the canvas could not be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+            mycanvas.width = window.innerWidth; mycanvas.height = window.innerHeight;
+
+            mycanvas.addEventListener("mousedown", begin);
+            var beginDrawing = false;
+            mycanvas.addEventListener("mousemove", draw);
+            mycanvas.addEventListener("mouseup", stop);
+
+            //  First way of getting the mouse position in canvas
+            function getCursorPosition(canvas, event)
+            {
+                /**
+                 * The .getBoundingClientRect() gets these:
+                 * it can be the window or the containing element of the element that calls .getBoundingClientRect()
+                 * 
+                 * x/left: distance between left-most part of window or the bounding rect and the canvas's left-most side.
+                 * 
+                 * y/top: gets the distance from window's or containing element's top to the top of the canvas element.
+                 * 
+                 * bottom: distance between window's top.
+                 * 
+                 * right: distance between the window's left-most side and the canvas's right-most side.
+                 * 
+                 * Hence event.clientX refers to the mouse's position relative to the containing box element, the window.
+                 * This starts from (0, 0) to (mouseX, 0)
+                 *  This is subtracted from rect.left which is the x position of the canvas (it's left-most side since it's a rectangle)
+                 *  This gives the distance between the left boundary of the canvas and the mouseX position.
+                 * 
+                 * similarly for event.clientY which is the mouse's position relative to the window from the top which is at
+                 * (0, 0) to (0, mouseY) -- the distance between the top of the window and the mouse's position within the canvas
+                 * This is subtracted from rect.top, which is the distance between window's top and the up-most side of the canvas box
+                 * Hence it gives the distance between the top boundary of canvas and the mouseY position.
+                */
+                var rect = canvas.getBoundingClientRect();
+                var x = event.clientX - rect.left;
+                var y = event.clientY - rect.top;
+                console.log("x: " + x + " y: " + y);
+                return{x, y};
+            } 
+            //  Second way, easier.
+            function getCursorPosition_v2(event)
+            {
+                var x = event.offsetX;
+                var y = event.offsetY;
+                console.log("x: " + x + " y: " + y);
+                return{x, y};
+            } 
+            
+            function begin(e)
+            {
+                // var mousePos = getCursorPosition(mycanvas, e);
+                var mousePos = getCursorPosition_v2(e);
+                ctx.beginPath();
+                ctx.moveTo(mousePos.x, mousePos.y);
+                beginDrawing = true;
+            }
+            
+            function draw(e)
+            {
+                if (beginDrawing)
+                {
+                    // var mousePos = getCursorPosition(canvas, e);
+                    var mousePos = getCursorPosition_v2(e);
+                    ctx.lineTo(mousePos.x, mousePos.y);
+                    ctx.stroke();
+                }
+            }
+            function stop(e) { beginDrawing = false; ctx.closePath();}
+        </script>
+    </body>
+</html>

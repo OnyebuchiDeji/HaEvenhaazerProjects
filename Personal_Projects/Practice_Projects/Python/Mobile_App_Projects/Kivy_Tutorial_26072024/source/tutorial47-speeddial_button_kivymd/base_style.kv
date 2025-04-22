@@ -1,0 +1,116 @@
+#   Testing implementation of FabButton objects
+
+##  Nothing like a MDFloatingActionButtonSpeedDial in kivy 2.0.0 anymore
+##  It's replaced with MDFabButton objects.
+## "MDExtendedFabButton",
+## "MDExtendedFabButtonIcon",
+## "MDExtendedFabButtonText",
+## "MDButton",
+## "BaseButton",
+## "BaseFabButton",
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+<MyExtFab>
+    # canvas.before:
+    #     Color:
+    #         rgba: (1, 0, 0, 1)
+    #     Rectangle:
+    #         size: self.size
+    style: "standard"
+    color_map: "surface"
+    fab_state: "expand"
+    size_hint_y: 0.07
+    MDExtendedFabButtonIcon:
+        icon: root.icon_text
+    MDExtendedFabButtonText:
+        text: root.text_text
+
+
+
+<MyBoxLayout>
+    orientation: 'vertical'
+    md_bg_color: self.theme_cls.backgroundColor
+
+    #   Just to show info if the app
+    MDTopAppBar:
+        type: "small"
+        size_hint_x: 0.95
+        # pos_hint: {"center_x": .5, "center_y": .5}
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: "Speed Dial Implementation"
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+        
+    ##  The actual Speed Dial App
+
+    MDScreen:
+        id: id_screen
+        on_touch_down:
+            if not btn.collide_point(*args[1].pos): btn.fab_state = "expand" if btn.fab_state == "collapse" else "collapse"
+            
+        MDLabel:
+            id: id_my_label
+            text: "Pree this Deji! Own custom SpeedDial Button\nThe 'Compose' Opens anytime the Screen is clicked."
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y":0.1}
+        
+        ##  FabButtons have three styles: "standard", "small", "large"
+        MDFabButton:
+            ##  The data attribute defines the actual buttons/icons
+            ##  displayed when the SpeedDial is expanded
+            data: app.data
+            root_button_anim: True
+
+            icon: "plus"
+            style: "standard"
+            pos_hint: {"center_x": 0.2, "center_y": 0.2}
+            color_map: "surface"
+
+            # root_button_anim: True
+            ##  Though the data can be defined here, its best in the Python file.
+            # data: {icon:text, icon:text, }
+
+        MDFabButton:
+            style: "small"
+            icon: "pencil-outline"
+            pos_hint: {"center_x": 0.2, "center_y": 0.5}
+            color_map: "secondary"
+        MDFabButton:
+            style: "large"
+            icon: "dots-vertical"
+            pos_hint: {"center_x": 0.2, "center_y": 0.8}
+            color_map: "tertiary"
+        
+        MDExtendedFabButton:
+            id: btn
+            style: "standard"
+            pos_hint: {"center_x": 0.8, "center_y": 0.5}
+            MDExtendedFabButtonIcon:
+                icon: "pencil-outline"
+            MDExtendedFabButtonText:
+                text: "Compose"
+                
+            
+        SpeedDial:
+            icon: "plus"
+            pos_hint: {"center_x":0.5, "center_y":0.2}
+            on_press: self.expand(app.data)

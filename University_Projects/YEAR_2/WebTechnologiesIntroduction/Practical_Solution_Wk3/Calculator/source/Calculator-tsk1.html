@@ -1,0 +1,103 @@
+<!DOCTYPE html><html>
+
+    <head>
+        <title>JavaScript Calculator</title>
+
+        <style>
+            :root
+            {
+                --defaultTextCol: black;
+                --defaultFontStyle: bold Arial;
+            }
+            body
+            {
+                font-size: larger;
+                color: var(--defaultTextCol);
+                font: var(--defaultFontStyle);
+            }
+
+            div#calc_body
+            {
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                /* grid-template-areas: "calc_screen" "button_box"; */
+                border: 5px black solid;
+                padding: 15px;
+
+                justify-items: center;
+
+            }
+
+            fieldset#calc_screen
+            {
+                border: 2px gray solid;
+                margin: 0px 0px 5px 0px;
+            }
+
+            fieldset#calc_screen legend
+            {
+                font-size: 1.5em;
+                color: lightcyan;
+                text-decoration: solid;
+                text-shadow: 2px 2px 5px black;
+            }
+
+            fieldset span#equals_sign
+            {
+                font: bold Arial;
+                color: blue;
+                text-shadow: 1px 1px 5px purple;
+                border: 2px gray solid;
+
+            }
+
+            section#button_box
+            {
+                display: grid;
+                /* grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr; */
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                
+                width: auto + 5%;
+                height: auto;
+
+                border: 1px black solid;
+                border-radius: 5px 5px 5px 5px;
+
+            }
+/* 
+            section#button_box button
+            {
+                border: 1px lightslategray solid;
+            } */
+
+        </style>
+    </head>
+
+    <body>
+
+        <div id="calc_body">
+            <fieldset id="calc_screen">
+                <legend>Deji's Calc</legend>
+                <input type="text" id="val1">
+                <span id="operator">+</span>
+                <input type="text" id="val2">
+                <span id="equals_sign">=</span>
+                &nbsp; &nbsp;
+                <span id="result">Result</span>
+            </fieldset>
+
+            <section id="button_box" >
+                    <button id="plus">+</button>
+                    <button id="minus">-</button>
+                    <button id="multiply">&times</button>
+                    <button id="divide">&divide</button>
+            </section>
+        </div>
+
+        <script src="Calculator-tsk1.js"></script>
+
+    </body>
+
+</html>

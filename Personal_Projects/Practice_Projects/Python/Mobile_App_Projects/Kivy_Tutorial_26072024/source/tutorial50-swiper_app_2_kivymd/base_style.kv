@@ -1,0 +1,117 @@
+#   Testing implementation of Swipers. This episode shows how to control the Swiper with Buttons and
+#   Hook methods to Swiping events
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+<FitImage>
+    # FitImage:
+    #     # source: "../../resources/2002722.jpg"
+    #     radius: [20,]
+
+    bar_color: "red"
+
+
+<MyBoxLayout>
+    orientation: 'vertical'
+    md_bg_color: self.theme_cls.backgroundColor
+    padding: "0dp"
+    spacing: "5dp"
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        id: id_topbar
+        type: "small"
+        size_hint_x: 0.95
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: app.title
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+        
+    ##  The actual Swiper App
+
+    MDScreen:
+        id: id_screen
+
+        MDSwiper:
+            id: id_swiper
+            size_hint_y: None
+            height: root.height - id_topbar.height - dp(40)
+            y: root.height - self.height - id_topbar.height - dp(20)
+
+            ##  Evetn Hooks
+            on_swipe:       #   For When any Swipe occurs
+            on_pre_swipe:  app.on_pre_swipe() #  runs anything before the actual event for a swipe
+            on_overswipe_left: app.on_overswipe_left() #  This is when one swipes past to the end of the Swipe items to the left.
+            on_overswipe_right: app.on_overswipe_right()#  This is when one swipes past to the end of the Swipe items to the right
+            on_swipe_left: app.on_swipe_left()
+            on_swipe_right: app.on_swipe_right()
+    ##  For the Buttons.
+    ##  Remember the Button Styles: "elevated", "filled", "tonal", "outlined", "text"
+    BoxLayout:
+        orientation: "horizontal"
+        markup: True
+        size_hint_y: 0.05
+        size_hint_x: 1.0
+        # padding: "5dp"    ##  Around each widget
+        spacing: "10dp" #   Same as spacing: 10
+        
+
+        MDButton:
+            style: "elevated"
+            ##  Change the index to change what the swiper points. Each picture is represented by a Number
+            ##  It's like a Python list
+            ##  so get the current index and subtract 1. This goes to the next one.
+            ##  But this needs an if statement to prevent getting index -1 which does not map to any image
+
+            ##  My Method
+            # on_release: id_swiper.set_current((id_swiper.get_current_index() if id_swiper.get_current_index() is not 0 else 1) - 1)
+
+            ##  My Method 2. Similar to episode. Better as it needs no else statement; Simply allow the subtraction only if condition is true
+            on_release: if id_swiper.get_current_index() - 1 >= 0: id_swiper.set_current(id_swiper.get_current_index() - 1)
+
+            MDButtonText:
+                text: "[b][size=15]Previous[/size][/b]"
+
+        MDButton:
+            style: "elevated"
+            ##  `len(id_swiper.get_items()) will get the length of the list of items in the swiper (the images)`
+            ##  This is like the prior but goes to the Next image.
+            ##  The if statement prevents going past the last item in the list.
+
+            ##  My Method
+            # on_release: id_swiper.set_current((id_swiper.get_current_index() + 1) if id_swiper.get_current_index() + 1 < len(id_swiper.get_items()) else id_swiper.get_current_index())
+
+            ##  From Episode. Better as it needs no else statement. Simply allow the addition only if condition is true
+            #   If the current index is les than the number of items then allow it. 
+            on_release:  if id_swiper.get_current_index() < len(id_swiper.get_items())-1: id_swiper.set_current(id_swiper.get_current_index() + 1)
+            
+
+            MDButtonText:
+                text: "[b][size=15]Next[/size][/b]"
+        
+        MDLabel:
+            markup: True
+            id: id_swipe_label
+            size_hint_x: 0.8
+            size_hint_y: 0.7
+            pos_hint: {"center_x": 0.9, "center_y": 0.5}
+            text: "[b][size=25]Waiting[/size][/b]"
+            

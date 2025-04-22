@@ -1,0 +1,18 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>My Home Page - Pypy</title>
+    </head>
+    <body>
+        <h1>Manipulating HTML with Python!</h1>
+        <!--
+            Note this. It is like a placholder
+            that will be replaced by a value I pass in via python
+        -->
+        <!-- Writing Python Code in inner HTML -->
+        {% for x in range(10) %}
+        {%if x % 2 == 1%}
+            <p>{{word}}, x: {{x}}</p>
+            {%endif%}
+        {% endfor %}
+    </body>
+</html>

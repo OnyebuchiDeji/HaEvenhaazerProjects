@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+        <title>Simple Map</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            .map{
+                height: 100%;
+            }
+            /* make the page fill the window */
+            
+            html, body{
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            var map;
+            function initMap(){
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 53.0038, lng: -2.2873},// Newcastle Upon Lyme
+                    // center: {lat@ 51.5099, lng: -0.1181}, // London
+                    zoom: 12
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=4f5e169d993a927e8e6e3b6805615be2&callback=initMap"
+            async defer></script>
+    </body>
+</html>

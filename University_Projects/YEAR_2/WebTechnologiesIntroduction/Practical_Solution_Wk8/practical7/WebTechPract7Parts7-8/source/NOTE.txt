@@ -1,0 +1,14 @@
+made: Wed-20-March-2024
+
+
+This is Part 7 of the Practical 7
+
+It involves using Ajax and jQuery to make requests to a server to get information.
+
+
+Part 8: Attribution
+
+This practical was originally created in several parts by David Collins and has subsequently been reordered and revised 
+for style and content by Adam Stanton and Goksel Misirli.
+
+DONE: WED-20-MARCH-2024

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Sketch App</title>
+    </head>
+
+    <body>
+        <h2>Sketch App</h2>
+        <!-- 
+            In this second version, anytime the mouse is pressed, then the move event listener is registered...
+            hence motion produces line drawing.
+            But when  mouse button is released the event listener is destroyed.
+            The second version should be more costly than this first. 
+         -->
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black">
+            If the canvas could not be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+            mycanvas.width = window.innerWidth; mycanvas.height = window.innerHeight;
+
+            mycanvas.addEventListener("mousedown", begin);
+
+            mycanvas.addEventListener("mouseup", stop);
+
+            //  First way of getting the mouse position in canvas
+            function getCursorPosition(canvas, event)
+            {
+                var rect = canvas.getBoundingClientRect();
+                var x = event.clientX - rect.left;
+                var y = event.clientY - rect.top;
+                console.log("x: " + x + " y: " + y);
+                return{x, y};
+            } 
+            //  Second way
+            function getCursorPosition_v2(event)
+            {
+                var x = event.offsetX;
+                var y = event.offsetY;
+                console.log("x: " + x + " y: " + y);
+                return{x, y};
+            } 
+            
+            function begin(e)
+            {
+                // var mousePos = getCursorPosition(mycanvas, e);
+                var mousePos = getCursorPosition_v2(e);
+                ctx.beginPath();
+                ctx.moveTo(mousePos.x, mousePos.y);
+                mycanvas.addEventListener("mousemove", draw);
+            }
+            
+            function draw(e)
+            {
+                // var mousePos = getCursorPosition(canvas, e);
+                var mousePos = getCursorPosition_v2(e);
+                ctx.lineTo(mousePos.x, mousePos.y);
+                ctx.stroke();
+            }
+            
+            function stop(e) { mycanvas.removeEventListener("mousemove", draw); ctx.closePath();}
+        </script>
+    </body>
+</html>

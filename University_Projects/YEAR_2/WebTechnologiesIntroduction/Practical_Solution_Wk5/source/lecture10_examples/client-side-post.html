@@ -1,0 +1,20 @@
+<!DOCTYPE HTML><html>
+    <html>
+        <head>
+            <title>Form Example</title>
+        </head>
+        <body>
+            <!--
+                action specifies where to send data to.
+                method specifies how, whether GET or POST
+                The name attribute becomes the key used to access the corresponding...
+                fields in the $_GET or $_POST arrays
+            -->
+            <form action="serverSide_welcome_post.php" method="post">
+            Name: <br><input type="text" name="name"><br>
+            Phone Number: <br><input type="text" name="phone"><br>
+            <input type="submit" value="Submit">
+            </form>
+        </body>
+    </html>
+</html>

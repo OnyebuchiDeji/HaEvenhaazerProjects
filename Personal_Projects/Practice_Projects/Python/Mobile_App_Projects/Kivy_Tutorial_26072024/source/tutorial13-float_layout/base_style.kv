@@ -1,0 +1,50 @@
+
+<Button>
+    font_size: 32
+    size_hint: (0.3, 0.3)
+
+<MyLayout>
+
+    FloatLayout:        
+        size: root.width, root.height
+        
+        ##  Defining them normally just renders them in the bottom left corner
+        ##  To fix this, a pos_hint is needed for each button
+        Button:
+            text: "Top Left"
+            #   The pos_hint is a Python dictionary-like structure
+            #   they take values between 0 and 1
+            #   {"x", "y", "top", "bottom", "left", "right"}
+            pos_hint: {"x": 0, "top":1}
+            # pos_hint: {"left": 1, "top":1}
+        
+        Button:
+            text: "Top Right"
+            #   This works because the button's width is 30% of the layout
+            #   so to position the Top Right button, it's top left corner
+            #   should be on the coordinate where x is 70% of the width of the containing layout
+            pos_hint: {"x": 0.7, "top":1}
+            #   OR just use the 'right' keyword.
+            # pos_hint: {"right": 1, "top":1}
+        Button:
+            text: "Center"
+            #   Because Button's width and height are .3, and the x and y centers of layout is .5,
+            #   taking into account that origin of the shape is top left corner
+            #   to correctly center the coordinates, do .5 - (0.3 /2) = 0.35 
+            # pos_hint: {"x": 0.35, "y": 0.35}
+            ##  Or
+            #   For using `top`, the more one goes toward 1, the cloaser to the top one gets:
+            #   Now, when top: 0.5 is used, the top Side of the Button is exactly halfway
+            #   But to correctly center it, subtract half of the height, which is 0.5 - 0.3 / 2
+            #   then subtract from 1 to make the offset in the right direction;
+            #   this gives 0.65
+            pos_hint: {"x": 0.35, "top": 0.65}
+            
+        Button:
+            text: "Bottom Left"
+            # pos_hint: {"x": 0}
+            #   Same as, because they were in bottom by default
+            # pos_hint: {"x": 0, "bottom":1}
+        Button:
+            text: "Bottom Right"
+            pos_hint: {"right": 1, "bottom":1}

@@ -1,0 +1,24 @@
+<MyRoot>
+
+    randomLabelVar: random_label
+
+    BoxLayout:
+        orientation: "vertical"
+
+        Label:
+            text: "Deji's Random Gen"
+            font_size: 64
+            color: (0.92, 0.45, 0)
+        
+        Label:
+            id: random_label
+            text: "-"
+            font_size: 64
+        
+        Button:
+            text: "Generate"
+            font_size: 32
+            size: 200, 150
+            on_press: root.generate_number()
+
+        

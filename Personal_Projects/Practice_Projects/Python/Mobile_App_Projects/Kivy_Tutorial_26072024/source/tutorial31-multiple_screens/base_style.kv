@@ -1,0 +1,45 @@
+#   the ScreenMaster or WindowManager controls all the other Screens
+
+ScreenMaster:
+    FirstScreen:
+        
+    SecondScreen:
+
+<FirstScreen>:
+    name: "first"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+    
+        Label:
+            text: "First Screen"
+            font_size: 32
+        
+        Button:
+            text: "Next Screen"
+            font_size: 32
+            #   app refers to the ScreenMaster in which the FirstScreen and SecondScreen
+            #   are instantiated
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+
+
+<SecondScreen>:
+    name: "second"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "Second Screen"
+            font_size: 32
+        
+        Button:
+            text: "Go Back"
+            font_size: 32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"

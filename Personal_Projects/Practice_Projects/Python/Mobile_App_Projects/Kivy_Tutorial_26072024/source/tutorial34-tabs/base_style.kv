@@ -1,0 +1,55 @@
+##  Adding Tabs
+
+<MyLayout>
+    #   This prevents creation of default tabs
+    do_default_tab: False
+
+    #   Can manipulate size and position of this TabbedPanel object
+    ##  Note that this actually centers from its center, unlike Widgets
+    ##  which center from their upper-left corner
+    size_hint: (.6, .6)
+    pos_hint: {'center_x':.5, 'center_y':.5}
+
+    #   Can even move tabs around
+    # tab_pos: 'top_mid'
+    # tab_pos: 'top_right'
+    # tab_pos: 'bottom_right'
+    # tab_pos: 'bottom_left'
+    # tab_pos: 'bottom_mid'
+
+    ##  Even left right -- you can even scroll along the tabs
+    tab_pos: 'right_top'
+    tab_pos: 'right_mid'
+    tab_pos: 'right_bottom'
+    tab_pos: 'left_bottom'
+    tab_pos: 'left_top'
+    tab_pos: 'left_mid'
+    
+    #   Create Tabs
+    TabbedPanelItem:
+        text: "Tab 1"
+        Label:
+            text: "This is Tab1, Pree it!"
+    
+    TabbedPanelItem:
+        text: "Tab 2"
+        BoxLayout:
+            # orientation: "vertical"
+            Label:
+                text: "Press The Button =>"
+            Button:
+                text: "Don't click me, bro!"
+
+    TabbedPanelItem:
+        text: "Tab 3"
+        BoxLayout:
+            Label:
+                text: "Who is this ninja \``? <3"
+            Image:
+                source: "resources/of_me.png"
+        
+    TabbedPanelItem:
+        text: "Tab 4"
+        
+        Image:
+            source: "resources/2003282.jpg"

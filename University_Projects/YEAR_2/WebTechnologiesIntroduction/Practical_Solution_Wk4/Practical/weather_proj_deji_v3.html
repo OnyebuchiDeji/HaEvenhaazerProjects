@@ -1,0 +1,255 @@
+<html>
+<script src="dailyweatherdata.js"></script>
+<script src="weatherforecast.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
+  integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+<style>
+  /* 
+    In this version, I implemented buttons. The ids I added to the first two buttons were not used however.
+    And though I had made more canvases, they were not fully implemented except for the first two Temperature graphs...
+    for London and Stoke.
+
+    But it is this version where I implemented the CoordinateLabel function object, a class-like strucutre
+  */
+  canvas {
+    width: 1000px !important;
+    height: 400px !important;
+  }
+</style>
+
+<body>
+  <button id="tempChartStoke" onclick="changeToBar(); changeColor('red')" >Change Graph Type</button>
+  <label id="lon_stoke"></label>
+  <label id="lat_stoke"></label>
+  <br>
+  <canvas id="TemperatureChartStoke"></canvas>
+  <br><br><br>
+
+  <button id="tempChartLondon" onclick="changeToBar()" >Change Graph Type</button>
+  <label id="lon_london"></label>
+  <label id="lat_london"></label>
+  <br>
+  <canvas id="TemperatureChartLondon"></canvas>
+  <br><br><br>
+
+  <button  onclick="changeToBar()" >Change Graph Type</button>
+  <br>
+  <canvas id="WindChartStoke"></canvas>
+  <br><br><br>
+
+  <button  onclick="changeToBar()">Change Graph Type</button>
+  <br>
+  <canvas id="WindChartLondon"></canvas>
+  <br><br><br>
+
+  <button onclick="changeToBar()" >Change Graph Type</button>
+  <br>
+  <canvas id="HumidityChartStoke"></canvas>
+  <br><br><br>
+
+  <button onclick="changeToBar()" >Change Graph Type</button>
+  <br>
+  <canvas id="HumidityChartLondon"></canvas>
+  <br><br><br>
+
+
+
+</body>
+
+<script>
+    //  Object Coordinatelabel
+  function CoordinateLabel()
+  {
+    this.labels = new Array();
+    
+    this.initialize = function(data, longLabeliId, latLabelId)
+    {
+      this.coordData = data;
+      this.longLabel = longLabeliId;
+      this.latLabel = latLabelId;
+      this.longLabel.innerHTML = "Longitude Stoke:" + this.coordData.coord.lon;
+      this.latLabel.innerHTML = "Latitude Stoke:" + this.coordData.coord.lat;
+
+      // this.labels.push(this.longLabel);
+      // this.labels.push(this.latLabel);
+
+      // this.labels[0].innerHTML = "Longitude Stoke:" + this.coordData.coord.lon;
+      // this.labels[1].innerHTML = "Latitude Stoke:" + this.coordData.coord.lat;
+    
+    }
+  
+    this.setColor = function(color)
+    {
+      this.longLabel.style.color = color;
+      this.latLabel.style.color = color;
+
+    }
+  
+    this.setBackgroundColor = function(color)
+    {
+      this.longLabel.style.backgroundColor = color;
+      this.latLabel.style.backgroundColor = color;
+    }
+  }
+    
+  
+  //TODO: Task 1:
+  var coordStoke = new CoordinateLabel();
+  coordStoke.initialize(JSON.parse(dailydata_stoke), document.getElementById("lon_stoke"), document.getElementById("lat_stoke"))
+  var coordLondon = new CoordinateLabel();
+  coordLondon.initialize(JSON.parse(dailydata_london), document.getElementById("lon_london"), document.getElementById("lat_london"))
+
+
+  coordStoke.setColor("lightblue");
+  coordStoke.setBackgroundColor("darkgray");
+  coordLondon.setColor("green");
+  coordLondon.setBackgroundColor("darkgray");
+
+
+  //  task2
+  // var weather = JSON.parse(dailydata_stoke);
+  // document.getElementById('lat').innerHTML = daily.coord.lat;
+
+  //TODO: Task 2, 3 and 4
+  var forecastStoke = JSON.parse(forecast_stoke);
+  var forecastLondon = JSON.parse(forecast_london);
+
+
+  this.dateListStoke = forecastStoke.list.map(list => {
+    return list.dt_txt;
+  });
+
+  this.temperatureListStoke = forecastStoke.list.map(list => {
+    return list.main.temp;
+  });
+  this.WindListStoke = forecastStoke.list.map(list => {
+    return list.wind.speed;
+  });
+  this.HumidityListStoke = forecastStoke.list.map(list => {
+    return list.main.humidity;
+  });
+
+
+  this.dateListLondon = forecastLondon.list.map(list => {
+    return list.dt_txt;
+  });
+  this.temperatureListLondon = forecastLondon.list.map(list => {
+    return list.main.temp;
+  });
+  this.WindListLondon = forecastLondon.list.map(list => {
+    return list.wind.speed;
+  });
+  this.HumidityListLondon = forecastLondon.list.map(list => {
+    return list.main.humidity;
+  });
+
+  var chartWidth = 720; var chartHeight = 405;
+
+  // var canvasHandle = document.getElementsByTagName('canvas');
+  // canvasHandle.style.width = chartWidth;
+  // canvasHandle.style.height = chartHeight;
+  
+
+
+  var tempChartStokeCtx = document.getElementById('TemperatureChartStoke');
+  tempChartStokeCtx.getContext('2d');
+  tempChartStokeCtx.style.width = chartWidth;
+  tempChartStokeCtx.style.height = chartHeight;
+  tempChartStokeCtx.style.backgroundColor = 'gainsboro';
+  tempChartStokeCtx.style.borderWidth = 100;
+  tempChartStokeCtx.style.borderColor = "black";
+  
+  var temperatureChartStoke = new Chart(tempChartStokeCtx, {
+    type: "line",
+    data: {
+      labels: this.dateListStoke,
+      datasets: [
+        {
+          label: "Temperature",
+          backgroundColor: "lightblue",
+          borderColor: "blue",
+          fill: false,
+          data: this.temperatureListStoke
+        },
+      ]
+    }
+  })
+
+
+  var tempChartLondonCtx = document.getElementById('TemperatureChartLondon');
+  tempChartLondonCtx.getContext('2d');
+  tempChartLondonCtx.style.width = chartWidth;
+  tempChartLondonCtx.style.height = chartHeight;
+  tempChartLondonCtx.style.backgroundColor = 'gainsboro';
+  tempChartLondonCtx.style.borderStyle = "solid";
+  tempChartLondonCtx.style.borderWidth = 10;
+  tempChartLondonCtx.style.borderColor = "black";
+  var temperatureChartBtn = document.getElementById("tempChartStoke");
+  temperatureChartBtn.onclick
+  var temperatureChart = new Chart(tempChartLondonCtx, {
+    type: "line",
+    data: {
+      labels: this.dateListLondon,
+      datasets: [
+        {
+          label: "Temperature",
+          backgroundColor: "green",
+          borderColor: "yellow",
+          fill: false,
+          data: this.temperatureListLondon
+        },
+      ]
+    }
+  })
+
+
+  function changeToBar()
+  {
+    if (temperatureChartStoke.config.type == "line")
+    {
+      temperatureChartStoke.config.type = "bar";
+    }
+    else
+    {
+      temperatureChartStoke.config.type = "bar";
+    }
+    temperatureChartStoke.update();
+  }
+  function changeColor(color)
+  {
+    if (color == temperatureChartStoke.data.datasets[0].backgroundColor)
+    {
+      temperatureChartStoke.data.datasets[0].backgroundColor = "blue";
+    }
+    else
+    {
+      temperatureChartStoke.data.datasets[0].backgroundColor = color;
+    }
+    
+    temperatureChartStoke.update();
+  }
+
+
+  // var ctx2 = document.getElementById('myChart').getContext('2d');
+  // this.chart = new Chart(ctx2, {
+  //   type: "line",
+  //   data: {
+  //     labels: this.dateList,
+  //     datasets: [
+  //       {
+  //         label: "Temperature",
+  //         backgroundColor: "green",
+  //         borderColor: "yellow",
+  //         fill: false,
+  //         data: this.temperatureList
+  //       }
+  //     ]
+  //   }
+  // })
+
+
+</script>
+
+</html>

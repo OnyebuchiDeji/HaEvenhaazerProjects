@@ -1,0 +1,17 @@
+
+#sentence1
+{
+    font-weight:bold;
+    color: green;
+}
+
+.italicized
+{
+    color: red;
+    font-style:italic;
+}
+
+.blueh1
+{
+    color: blue;
+}

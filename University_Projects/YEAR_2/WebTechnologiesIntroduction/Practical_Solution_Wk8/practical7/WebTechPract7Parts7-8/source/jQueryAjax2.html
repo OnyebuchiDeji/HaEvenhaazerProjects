@@ -1,0 +1,53 @@
+<!DOCTYPE html><html>
+    <head>
+        <!-- 
+            This is the second example.
+
+            It works just like the first but with these differences:
+            1. the generation of random quotes.
+            2. The implemention of the use of the 'Click Me' button!
+            3. It uses another way to make the ajax request!
+               It uses the .load() method that loads data from the server and sets the HTML content...
+               of the matched elements to the returned data!
+            4. It updates the DOM of the element that calls the .load() method!
+         -->
+        <title>Using Ajax and jQuery for Web Service Calss and HTTP Requests</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            $(
+                function()
+                {
+                    $("#clickme").click(function()
+                    {
+                        var url = "https://www.teach.scam.keele.ac.uk/extra_scripts/getquote.php?quotenum=";
+                        url += Math.floor((Math.random() * 150) + 1).toString();
+                        //  This is the special code to update the DOM with the output from the request:
+                        //  It loads the reeceived data as text content into the element of id 'site'
+                        $("#site").load(url);
+                    });
+                }
+            );
+        </script>
+    </head>
+
+    <body>
+        <h2>Ajax</h2>
+        <div id="site"></div><br>
+
+        <dl id="dict">
+            <dt>jQuery</dt>
+            <dd>A JavaScript library that enhances development productivity</dd>
+            <dt>jQuery-UI</dt>
+            <dd>A jQuery plugin that provides user-interface widgets</dd>
+            <dt>dojo</dt>
+            <dd>A popular Javascript library</dd>
+            <dt>php</dt>
+            <dd>A server-side scripting language originally known as 'Personal Home Page'</dd>
+            <dt>MySQL</dt>
+            <dd>A relational database commonly used to implement the data tier in web-based
+                application development</dd>
+        </dl><br>
+        
+        <button id="clickme">Click Me</button>
+    </body>
+</html>

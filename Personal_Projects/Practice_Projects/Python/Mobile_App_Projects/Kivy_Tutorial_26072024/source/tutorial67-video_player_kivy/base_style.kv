@@ -1,0 +1,43 @@
+#   Demonstrating How to Make a Video Player with Kivy
+
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+
+<MyBoxLayout>
+    md_bg_color: self.theme_cls.secondaryColor
+    orientation: 'vertical'
+    padding: "0dp"
+    # spacing: "5dp"
+
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        id: id_topbar
+        type: "small"
+        size_hint_x: 0.95
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: app.title
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+
+    MDScreen:
+        id: id_screen

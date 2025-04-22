@@ -1,0 +1,38 @@
+
+
+<MyLayout>
+    BoxLayout:
+        size: root.width, root.height
+        orientation: "vertical"
+
+        #   Padding aroung the buttons, except between them, because they're stacked.
+        #   so use padding with spacing in a box layout.
+        padding: 50
+        #   Spacing to create space between the buttons
+        spacing: 20
+
+
+        Button:
+            text: "Yo! World!!"
+        
+        Button:
+            text: "Peace! World!"
+
+        Button:
+            text: "I'm Going Home!"
+        
+        Button:
+            text: "I'm filled!"
+            
+            #   This changes the size 
+            # size_hint: (0.5, 0.5)
+            
+            #   The below hardcode's the button's dimension
+            # size_hint: (None, None)
+            # width: 200
+            # height: 50
+
+            size_hint: (1, .3)
+
+            #   position hint
+            pos_hint: {'center_x': 0.5}

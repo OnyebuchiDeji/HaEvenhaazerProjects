@@ -1,0 +1,55 @@
+#   Testing implementation of Dialog Boxes
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+
+<MyBoxLayout>
+    orientation: 'vertical'
+    md_bg_color: self.theme_cls.backgroundColor
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        type: "small"
+        size_hint_x: 0.95
+        # pos_hint: {"center_x": .5, "center_y": .5}
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: "Dialog Box App"
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+        
+    ##  The actual Speed Dial App
+    MDScreen:
+        id: id_screen
+
+        MDButton:
+            pos_hint:{"center_x":.5, "center_y":.5}
+            radius: [0]
+            on_release: app.show_alert_dialog("Pree It! This Alert!")
+            # on_release: app.show_alert_dialog("")
+            MDButtonText:
+                text: "ALERT POPUP!"
+
+        MDLabel:
+            id: id_my_label
+            text: "Pree this Deji! Own custom SpeedDial Button\nThe 'Compose' Opens anytime the Screen is clicked."
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y":0.4}
+        

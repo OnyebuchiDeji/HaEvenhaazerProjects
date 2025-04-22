@@ -1,0 +1,39 @@
+body{
+    /*
+        This changes only the color of the paragraph...
+        because for h1, h2, to h5, I change their colours after this code
+    */
+    color: rgb(71, 34, 80);
+    background-color: whitesmoke;
+}
+
+h1, h2, h3 {font: bold Arial;}
+h4, h5 {font: bold Georgia;}
+
+h1 {color: skyblue;}
+h2 {color: darkblue;}
+h3 {color: darkcyan;}
+h4 {color: lightblue;}
+h5 {color: darkgreen;}
+
+a{
+    color: greenyellow;
+    text-decoration:none;
+    font-weight: bold;
+}
+
+/*  The tag, a, can be further styled using these selectors:
+    a:hover,
+    a:link
+*/
+/* a:hover {text-decoration: overline;} */
+/* a:link, a:visited */
+a:link, a:visited {
+    color: green;
+    text-decoration: overline;
+    cursor: auto;
+  }
+  
+a:link:active, a:visited:active {
+    color: (internal value);
+  }

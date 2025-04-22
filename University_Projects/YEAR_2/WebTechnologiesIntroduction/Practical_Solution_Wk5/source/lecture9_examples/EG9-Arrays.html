@@ -1,0 +1,26 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <title>
+            Arrays
+        </title>
+    </head>
+
+    <body>
+        This is HTML! <br>
+        <?php
+            $colours = array("red", "blue", "green", "yellow");
+            //  A special printing method
+            print_r($colours); echo '<br/>';
+
+            //  access element
+            echo "$colours[1]";
+            //  Append an element to array
+            $colours[] = "orange";
+            print_r($colours); echo '<br/>';
+
+            //  Rmove an elment
+            unset($colours[2]);
+            print_r($colours); echo '<br/>';
+        ?>
+    </body>
+</html>

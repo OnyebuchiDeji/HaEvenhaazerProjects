@@ -1,0 +1,9 @@
+{
+    "Intro": "Demonstrating the different data the Java app 'WebServer' can send.",
+    "Data1": "This is a string.",
+    "Data2":[
+        "This is a list",
+        "of strings,",
+        "as you can see."
+    ]
+}

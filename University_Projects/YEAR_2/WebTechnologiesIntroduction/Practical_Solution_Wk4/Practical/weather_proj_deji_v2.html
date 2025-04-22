@@ -1,0 +1,148 @@
+<html>
+<script src="dailyweatherdata.js"></script>
+<script src="weatherforecast.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
+  integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+  canvas {
+    width: 1000px !important;
+    height: 400px !important;
+  }
+</style>
+
+<body>
+  <label id="lon_stoke"></label>
+  <label id="lat_stoke"></label>
+  <br>
+  <canvas id="TemperatureChartStoke"></canvas>
+  <br><br><br>
+
+  <label id="lon_london"></label>
+  <label id="lat_london"></label>
+  <br/>
+  <canvas id="TemperatureChartLondon"></canvas>
+  <!-- <canvas id="myChart2"></canvas> -->
+  <!-- <canvas id="myChart"></canvas> -->
+  <!-- <canvas id="temperatureChart"></canvas>
+  <canvas id="windChart"></canvas>
+  <canvas id="humidityChart"></canvas> -->
+
+
+</body>
+
+<script>
+  //TODO: Task 1:
+  var dailyStoke = JSON.parse(dailydata_stoke);
+  var long_stoke = document.getElementById('lon_stoke');
+  var lat_stoke = document.getElementById('lat_stoke');
+  long_stoke.innerHTML = "Longitude Stoke:" + dailyStoke.coord.lon;
+  lat_stoke.innerHTML = "Latitude Stoke:" + dailyStoke.coord.lon;
+  long_stoke.style.color = "lightblue";
+  lat_stoke.style.color = "lightblue";
+
+  var dailyLondon = JSON.parse(dailydata_london);
+  var long_london = document.getElementById('lon_london');
+  var lat_london = document.getElementById('lat_london');
+  long_london.innerHTML = "Longitude London:" + dailyLondon.coord.lon;
+  lat_london.innerHTML = "Latitude London:" + dailyLondon.coord.lat;
+  long_london.style.color = "green";
+  lat_london.style.color = "green";
+
+  //  task2
+  // var weather = JSON.parse(dailydata_stoke);
+  // document.getElementById('lat').innerHTML = daily.coord.lat;
+
+  //TODO: Task 2, 3 and 4
+  var forecastStoke = JSON.parse(forecast_stoke);
+  var forecastLondon = JSON.parse(forecast_london);
+
+
+  this.dateListStoke = forecastStoke.list.map(list => {
+    return list.dt_txt;
+  });
+
+  this.temperatureListStoke = forecastStoke.list.map(list => {
+    return list.main.temp;
+  });
+
+
+  this.dateListLondon = forecastLondon.list.map(list => {
+    return list.dt_txt;
+  });
+
+  this.temperatureListLondon = forecastLondon.list.map(list => {
+    return list.main.temp;
+  });
+
+  var chartWidth = 720; var chartHeight = 405;
+
+  // var canvasHandle = document.getElementsByTagName('canvas');
+  // canvasHandle.style.width = chartWidth;
+  // canvasHandle.style.height = chartHeight;
+
+  var temperatureChartStoke = document.getElementById('TemperatureChartStoke');
+  temperatureChartStoke.getContext('2d');
+  temperatureChartStoke.style.width = chartWidth;
+  temperatureChartStoke.style.height = chartHeight;
+  temperatureChartStoke.style.backgroundColor = 'gainsboro';
+  this.chart = new Chart(temperatureChartStoke, {
+    type: "line",
+    data: {
+      labels: this.dateListStoke,
+      datasets: [
+        {
+          label: "Temperature",
+          backgroundColor: "lightblue",
+          borderColor: "blue",
+          fill: false,
+          data: this.temperatureListStoke
+        },
+      ]
+    }
+  })
+
+  var temperatureChartLondon = document.getElementById('TemperatureChartLondon');
+  temperatureChartLondon.getContext('2d');
+  temperatureChartLondon.style.width = chartWidth;
+  temperatureChartLondon.style.height = chartHeight;
+  temperatureChartLondon.style.backgroundColor = 'gainsboro';
+  this.chart = new Chart(temperatureChartLondon, {
+    type: "line",
+    data: {
+      labels: this.dateListLondon,
+      datasets: [
+        {
+          label: "Temperature",
+          backgroundColor: "green",
+          borderColor: "yellow",
+          fill: false,
+          data: this.temperatureListLondon
+        },
+      ]
+    }
+  })
+
+
+
+  // var ctx2 = document.getElementById('myChart').getContext('2d');
+  // this.chart = new Chart(ctx2, {
+  //   type: "line",
+  //   data: {
+  //     labels: this.dateList,
+  //     datasets: [
+  //       {
+  //         label: "Temperature",
+  //         backgroundColor: "green",
+  //         borderColor: "yellow",
+  //         fill: false,
+  //         data: this.temperatureList
+  //       }
+  //     ]
+  //   }
+  // })
+
+
+</script>
+
+</html>

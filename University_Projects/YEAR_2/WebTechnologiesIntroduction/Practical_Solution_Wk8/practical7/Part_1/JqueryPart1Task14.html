@@ -1,0 +1,46 @@
+<!DOCTYPE html><html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>JQuery Part 1 Task 14</title>
+        <script type="text/javascript"
+        src="https://code.jquery.com/jquery-3.7.1.min.js">
+        </script>
+        <script type="text/javascript" defer>
+            $(function()
+            {
+                $("#dict").find("dd").hide().end().find("dt").click(function()
+                {
+                    $(this).next().slideToggle();
+                });
+            });
+        </script>
+
+
+        <!--
+            This is for Task 10:
+            Making style element and adding the first css rule
+        -->
+        <style>
+            #ulist li.green
+            {
+                color: green;
+            }
+        </style>
+    </head>
+
+    <body>
+        <dl id="dict">
+            <dt>jQuery</dt>
+            <dd>A JavaScript library that enhances development productivity</dd>
+            <dt>jQuery-UI</dt>
+            <dd>A jQuery plugin that provides user-interface widgets</dd>
+            <dt>dojo</dt>
+            <dd>A popular JavaScript library</dd>
+            <dt>PHP</dt>
+            <dd>A server-side scripting language originally known as 'Personal Home Page'</dd>
+            <dt>MySQL</dt>
+            <dd>A relational database commonly used to implement the data tier in web-based 
+                application development</dd>
+        </dl>
+    </body>
+</html>

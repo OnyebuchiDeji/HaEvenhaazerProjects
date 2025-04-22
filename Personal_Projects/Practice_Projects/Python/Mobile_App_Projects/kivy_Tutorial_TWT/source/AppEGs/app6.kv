@@ -1,0 +1,15 @@
+<Button>:
+    font_size: 40
+    color: 0.6, 0.3, 0.7, 1
+    size_hint: 0.3, 0.5
+
+<FloatLayout>:
+    Button:
+        pos_hint: {"x":0.5, "top":1}
+        text: "Deji's"
+
+    Button:
+        id: btn
+        pos_hint: {"y": 0.3}
+        text:"Mobile App" if btn.state == "normal" else "Mobile Dev"
+        background_color: (0.9, 0.0, 0.0, 1) if btn.state=="normal" else (0.0, 0.0, 0.9, 1)

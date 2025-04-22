@@ -1,0 +1,42 @@
+
+<MyLayout>  
+    BoxLayout:
+        
+        orientation: "vertical"
+        size: root.width, root.height
+
+        padding: 50
+        spacing: 20
+
+        Label:
+            markup: True
+            font_size: 32
+            text: "Pree The Text [i]Style Changing[/i] with Markup"
+        
+        Label:
+            #   Tell Kivy to use Markup
+            markup: True
+            font_size: 32
+            text: "This is [b]Bold[/b] [font=times]Text[/font]"
+        Label:
+            #   Tell Kivy to use Markup
+            markup: True
+            font_size: 32
+            text: "Pree This [size=75][font=times]Text Font[/font][/size] [sup]Up[/sup] and [sub]Down[/sub]"
+
+        Label:
+            markup: True
+            font_size: 32
+            text: "Pree The Text [color=#a123c3]Color Changing[/color] with Markup"
+        
+        Label:
+            markup: True
+            font_size: 32
+            text: "Making This Text [size=150][i]BIG[/i][/size] with Markup"
+        
+        Button:
+            markup: True
+            font_size: 32
+            text: "[s]Don't[/s] [u]Click Me[/u]"
+
+    

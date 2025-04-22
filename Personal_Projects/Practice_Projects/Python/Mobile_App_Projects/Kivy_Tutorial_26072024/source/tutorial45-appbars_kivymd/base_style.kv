@@ -1,0 +1,112 @@
+#   Testing use of AppBars
+
+
+#   For registering action bottons for MDBottomAppBar
+#:import MDActionBottomAppBarButton kivymd.uix.appbar.MDActionBottomAppBarButton
+
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+    #   Note the Button's size is removed, and size_hint is None
+    # size: "20dp", "20dp"
+    # padding: 0
+    # spacing: 0
+
+
+<MyBoxLayout>
+    orientation: 'vertical'
+
+    MDTopAppBar:
+        # type: "small"
+        # type: "medium"
+        type: "large"
+
+        # size_hint_x: .95
+
+        ##  pos_hint is only useful in FloatLayout, which is default of MDScreen
+        ##  But center_x:.5 is useful when size_hint_x is not 1
+        # pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                on_press: app.on_action_button_pressed(self)
+            MDActionTopAppBarButton:
+                icon: "menu"
+                on_press: app.on_action_button_pressed(self)
+            
+        
+        #   There is nothing like MDTopAppBarMidButtonContainer
+        #   There is only space here for the title
+        MDTopAppBarTitle:
+            # font_size: 14
+            text: "TopAppBar's Text"
+            # pos_hint: {"center_x": .5}
+
+
+        MDTopAppBarTrailingButtonContainer:
+            MDActionTopAppBarButton:
+                icon: "account-circle-outline"
+            MDActionTopAppBarButton:
+                icon: "calendar"
+            MDActionTopAppBarButton:
+                icon: "dots-vertical"
+            # MDActionTopAppBarButton:
+            MDButton:
+                # icon: "sun"
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+
+    
+    MDLabel:
+        id: id_my_label
+        text: "Pree This Label!"
+        halign: "center"
+        color: "red"
+        # adaptive_size: True
+        # font-size: 100
+        # # tex_size: 100
+    
+        
+    
+    ##  The MDBottomAppBar has no attribute like MDBottomAppBarTitle, which makes sense for a BottomAppBar
+    ##  Neither do Labels work.
+    MDBottomAppBar:
+        md_bg_color: self.theme_cls.backgroundColor
+        ##  The three below do not work
+        # title: "BottomAppBar"
+        # color: "red"
+        # mode: "free-end"
+
+        #   The below list is used to add several MDActionBottomAppBarButtons
+        action_items:
+            [
+            ##  This directly below didn't work; it caused the app to freeze
+            # MDActionBottomAppBarButton(icon="gmail", on_press = lambda x: app.on_action_button_pressed("gmail", self.action_items)),
+            MDActionBottomAppBarButton(icon="gmail", on_press = lambda x: app.on_action_button_pressed("gmail", self.action_items)),
+            MDActionBottomAppBarButton(icon="label-outline", on_press=lambda x: app.on_action_button_pressed("label-outline")),
+            MDActionBottomAppBarButton(icon="bookmark", on_press = lambda x: app.on_action_button_pressed("bookmark")),
+            ]
+    
+        #   This one is to add that Widget that corresponds to the MDToolbar demonstrated
+        #   in the episode.
+        ##  NOTE! There can only be one of these
+        MDFabBottomAppBarButton:
+            icon: "git"
+        # MDFabBottomAppBarButton:
+        #     icon: "plus"
+
+
+        ### NOTHING like MDToolbar anymore
+        # MDToolbar:
+            # icon: "git"
+            # type: "bottom"
+            # mode: "free-end"
+

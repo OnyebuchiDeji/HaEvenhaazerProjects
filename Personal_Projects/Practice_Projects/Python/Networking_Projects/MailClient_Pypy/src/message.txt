@@ -1,0 +1,2 @@
+Yo! Deji! This is an email I sent to you via Python.
+Today's date is Sat-6-July-2024. We Power!

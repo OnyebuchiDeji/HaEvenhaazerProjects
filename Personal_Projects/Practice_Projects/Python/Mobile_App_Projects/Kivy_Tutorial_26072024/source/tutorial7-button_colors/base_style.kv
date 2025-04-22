@@ -1,0 +1,62 @@
+#   Can import things in Kivy
+#   Can use function kivy.utils to get color codes from hex
+#   The below is like import <module> from <package>
+#: import utils kivy.utils
+
+<MyLayout>
+    fname: fname_id
+    lname: lname_id
+    color: color_id
+    print_area: print_area_id
+    
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "First Name"
+                #   The below does not work for labels, just for TextInput and Buttons
+                # background_color: utils.get_color_from_hex('#671a32')
+            TextInput:
+                id: fname_id
+                multiline: False    
+                background_color: utils.get_color_from_hex('#671a32')
+            Label:
+                text: "Last Name"
+            TextInput:
+                id: lname_id
+                multiline: False    
+            Label:
+                text: "Favourite Color"
+            TextInput:
+                id: color_id
+                multiline: False
+        
+        Button:
+            text: "Submit"
+            font_size: 35
+            size_hint_y: None
+            height: 100
+            on_press: root.press(self)
+            #   Color: RGBA -- because the default color is gray, red gives dark red, and such for others
+            #   note that it's npt actually a gray image but a gray button
+            #   Solution: use background_normal: ''
+            background_normal: ''
+            #   below is (102, 26, 50)
+            # background_color: (0.4, 0.1, 0.2, 1)
+            color: (0.9, 0.86, 0.23)
+
+            #   Getting color from hex
+            #   below is (102, 26, 50)
+            background_color: utils.get_color_from_hex('#671a32')
+        
+        Label:
+            id: print_area_id
+            color: (0.9, 0.86, 0.23)
+            text: ""
+            font_size: 20
+            size_hint_y: None
+            height: 100

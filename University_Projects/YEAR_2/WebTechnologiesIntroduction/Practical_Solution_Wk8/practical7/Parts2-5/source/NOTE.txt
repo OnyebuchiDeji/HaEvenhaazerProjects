@@ -1,0 +1,8 @@
+Date:
+Tue-19-March-2024
+
+These parts explore jQuery efffects such as animation.
+
+In part 5 of the actual practical, I didn't write any examples to show
+the use of .position() and .offset() because no examples were given.
+But I did everything from parts 2-4.

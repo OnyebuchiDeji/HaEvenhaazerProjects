@@ -1,0 +1,29 @@
+
+<MyLayout>  
+    BoxLayout:
+        
+        orientation: "vertical"
+        size: root.width, root.height
+
+        padding: 50
+        spacing: 20
+
+        Label:
+            markup: True
+            id: switch_state_label
+            font_size: 32
+            text: "[size=100][b]Switch State: On[/b][/size]" if my_switch.active else "[size=100][b]Switch State: Off[/b][/size]"
+        
+        Switch:
+            id: my_switch
+            active: False
+            font_size: 30
+            # size_hint: (0.8, 0.8)
+            # size: root.width * 0.8, root.height * 0.8
+            on_active: root.switch_clicked(self)
+
+        Button:
+            markup: True
+            font_size: 30
+            text: "[size=45][b]Switch Enabled. (Click Here to Disable)[/b][/size]" if not my_switch.disabled else "[size=45][b]Switch Disabled. (Click Here to Enable)[/b][/size]"
+            on_release: root.toggle_switch_disable()

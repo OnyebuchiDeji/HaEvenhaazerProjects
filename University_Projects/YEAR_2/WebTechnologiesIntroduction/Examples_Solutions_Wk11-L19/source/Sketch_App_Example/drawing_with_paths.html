@@ -1,0 +1,28 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Drawing With Paths</title>
+    </head>
+
+    <body>
+        <h2>Drawing Arcs</h2>
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black">
+            If the canvas could be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+            ctx.beginPath();   /*This causes the canvas to create...*/
+            ctx.moveTo(100, 100);   /*these series of points beginning here (100, 100)*/
+            ctx.lineTo(200, 300);   /*The closePath function draws a line connecting the points...*/
+            ctx.lineTo(300, 100);   /* back towards the first point at (100, 100) in stroke mode.*/
+            ctx.closePath();       /* Once path is closed, it cannot be used again*/
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 100;    //  Manipulates the thickness of the lines
+            // ctx.strokeWidth = 100;
+            ctx.stroke();
+            ctx.fillStyle = "yellow"
+            ctx.fill(); 
+        </script>
+    </body>
+</html>

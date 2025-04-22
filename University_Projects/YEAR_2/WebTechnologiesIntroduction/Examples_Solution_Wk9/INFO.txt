@@ -1,0 +1,18 @@
+Done: Wed-3-April-2024
+
+These examples show the use of built-in php functions used to validate input strings from forms, for example,
+to ensure to remove any characters that hackers could use to break into a system, manipulating SQL requests and such.
+
+There are functions like:
+htmlspecialchars(<string_arg)
+htmlentities(<string_arg>)
+The two above convert characters that should not be added into the DOM, to a form that html
+can display as normal strings. E.g:
+$input_string = "PHP 'character string conversion' functions <i>htmlentities()</i>";
+$output = htmlentities($input_string);
+The output string will just display the whole string, including the <i></i> tags. Because of the functions above, php does not
+process the tags to give the equivalent html effect. Hence it just gets printed out as a normal string.
+Test this by running, "htmlentities_test.php".
+
+As explained in the files, however, htmlspecialchars is limited to a number of chars it affects.
+Check "htmlentities_vs_htmlspecialchars.php".

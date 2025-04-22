@@ -1,0 +1,22 @@
+Widgets:
+
+<Button>
+    color: (0.7, 0.2, 0.7, 1.0)
+
+<Widgets>
+    Button:
+        size: 200, 200
+        pos: (root.width / 2) - 100, (root.height / 2) - 100 
+        text: "Press for Popup!"
+        on_release: root.show_popup()
+
+<PopupWindow>:
+    Label:
+        text: "You've pressed the Button!"
+        size_hint: (0.6, 0.2)
+        pos_hint: {"x": 0.2, "top": 1}
+    Button:
+        text: "Press To Exit!"
+        size_hint: (0.8, 0.2)
+        pos_hint: {"x": 0.1, "y": 0.1}
+        on_release: app.root.close_popup()

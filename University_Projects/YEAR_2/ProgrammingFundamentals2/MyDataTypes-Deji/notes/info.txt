@@ -1,0 +1,8 @@
+Created: 24-01-2024
+
+/**
+ *
+ * @author Ebenezer Ayo-Meti
+ * created: Thurs-24-10-2024, Thurs-25-10-2024
+ * The stack datatype has been implemented and it is able to resize in capacity.
+ */

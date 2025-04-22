@@ -1,0 +1,68 @@
+body
+{
+    color: black;
+    background-color: gainsboro;
+}
+
+#main_header
+{
+    font: bold Georgia; 
+    font-size: xx-large;
+    font-style:normal;
+    color: rebeccapurple;
+    text-decoration: underline;
+}
+
+.header_scheme
+{
+    font: bold Georgia; 
+    font-size: large;
+    font-style:normal;
+    color: rgb(153, 51, 65);
+    text-decoration: underline;
+}
+
+.paragraph_scheme
+{
+    font: normal Sans-serif;
+    font-size: medium;
+    color: black;
+    font-style:normal;
+}
+
+.caption
+{
+    font: bold Helvetica;
+    font-size: small;
+    font-style: italic;
+    text-decoration: solid;
+    color: tomato;
+}
+
+a
+{
+    font-style: normal;
+    color: red;
+    text-decoration:none;
+    /* color: hotpink; */
+}
+
+a:hover
+{
+    text-decoration:overline;
+    color: hotpink;
+    font-weight: bold;
+}
+/* a:hover {text-decoration: overline;} */
+/* a:link, a:visited */
+
+#main_border
+{
+    float: left;
+    width: 500px;
+    background: bisque;
+    padding: 25px 25px 25px 25px;
+    margin: 50px 50px 50px 50px;
+    border-style: solid;
+    border-width: 10px;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Local Storage</title>
+    </head>
+    <body>
+        <h2>Saving some data locally on my device, but in a part of the Web app</h2>
+        <script>
+            if (localStorage.pagecount)
+            {
+                localStorage.pagecount = Number(localStorage.pagecount) + 1;
+            }
+            else
+            {
+                localStorage.pagecount = 1;
+                //  Or: localStorage.setItem("pagecount", 1)
+            }
+            document.write("You have made " + localStorage.pagecount + " visits to this page.");
+        </script>
+    </body>
+</html>

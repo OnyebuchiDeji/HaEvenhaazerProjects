@@ -1,0 +1,1 @@
+select ItemNumber from DejisItems where City = 'Paris'; /* Get the item numbers for all items located in Paris */

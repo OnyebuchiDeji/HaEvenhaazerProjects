@@ -1,0 +1,25 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <!-- This is the template that will be inherited by others -->
+        <title>{% block title %} {% endblock %}</title>
+
+        <!--
+            The Python code in href is used to get the url for the static folder.
+            then the file's name is gotten!
+        -->
+        <link rel="stylesheet" href="{{url_for('home_page.static', filename='style1.css')}}">
+        <!--
+            Note that other folders can be nested within the 'static' folder.
+            in that case, this is how it's referenced
+        -->
+        <link rel="stylesheet" href="{{url_for('home_page.static', filename='page_styles/nav_styles.css')}}">
+        <link rel="stylesheet" href="{{url_for('home_page.static', filename='page_styles/image_styles.css')}}">
+        
+    </head>
+
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+
+</html>

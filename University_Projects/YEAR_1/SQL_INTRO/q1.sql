@@ -1,0 +1,1 @@
+select ItemNumber from DejisItems;

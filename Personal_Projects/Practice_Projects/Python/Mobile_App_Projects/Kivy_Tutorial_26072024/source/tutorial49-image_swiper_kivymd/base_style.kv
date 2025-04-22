@@ -1,0 +1,58 @@
+#   Testing implementation of Swipers. This is the introduction
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+# <MDSwiperItem>
+#     FitImage:
+#         # source: "../../resources/2002722.jpg"
+#         radius: [20,]
+
+
+<MyBoxLayout>
+    orientation: 'vertical'
+    md_bg_color: self.theme_cls.backgroundColor
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        id: id_topbar
+        type: "small"
+        size_hint_x: 0.95
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: "Swiper App Implementation"
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+        
+    ##  The actual Swiper App
+
+    MDScreen:
+        id: id_screen
+
+        MDSwiper:
+            id: id_swiper
+            size_hint_y: None
+            height: root.height - id_topbar.height - dp(40)
+            y: root.height - self.height - id_topbar.height - dp(20)
+
+            # MDSwiperItem:
+            # MDSwiperItem:
+            # MDSwiperItem:
+            # MDSwiperItem:
+            # MDSwiperItem:

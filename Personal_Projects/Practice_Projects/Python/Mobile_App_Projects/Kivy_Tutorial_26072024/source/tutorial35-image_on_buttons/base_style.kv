@@ -1,0 +1,41 @@
+##  Adding Images on Buttons
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        padding: 50
+        spacing: 20
+
+        Label:
+            id: my_label_id
+            text: "Yo! World!"
+            font_size: 32
+
+        Label:
+            text: "Pree the Button Animation."
+            font_size: 32
+        
+        Button:
+            # text: "Yo!"
+            # font_size: 32
+            #   Changed the image's size
+            size_hint: .15, .12
+            pos_hint: {"center_x": 0.5}
+            #   The backgroundc_color can be done without the brackets.
+            background_color: (0, 0, 0, 0)
+
+            on_press: root.click_login_button()
+            on_release: root.release_login_button()
+            
+            Image:
+                #   To change the image
+                id: login_image_id
+                source: "resources/login.png"
+                #   Center image in the middle of button
+                #   Image's parent is the button
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+            

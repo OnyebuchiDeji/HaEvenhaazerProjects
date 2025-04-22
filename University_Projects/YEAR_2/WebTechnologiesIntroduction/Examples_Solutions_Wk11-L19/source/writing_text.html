@@ -1,0 +1,38 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Writing Text</title>
+    </head>
+
+    <body>
+        <h2>Writing Text</h2>
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black">
+            If the canvas could be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+            /**
+             * Arcs are also formed y paths, one that traces an arc of a circle
+            */
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+            mycanvas.width = window.innerWidth; mycanvas.height = window.innerHeight;
+
+            ctx.beginPath();
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 10;
+            ctx.moveTo(0, mycanvas.height / 2);
+            ctx.lineTo(mycanvas.width, mycanvas.height / 2);
+            ctx.stroke();
+            ctx.closePath()
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = 'grey';
+            ctx.font = "bold 80px Arial";
+            //  This makes the text's center to be at the center of Y-axis
+            ctx.textAlign = "center";
+            // Changing bottom to "top", "bottom", "middle", "alphabetical"
+            ctx.textBaseline = "middle";
+            ctx.strokeText("Deji Artzz - Web Technologies", mycanvas.width / 2, mycanvas.height/2);
+
+        </script>
+    </body>
+</html>

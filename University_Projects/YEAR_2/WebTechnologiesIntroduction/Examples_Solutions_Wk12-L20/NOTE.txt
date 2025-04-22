@@ -1,0 +1,4 @@
+This was done: Sun-14-April-2024 - Mon-15-April-2024
+
+It's just two examples concerning web services.
+The first involves PHP and the next Web Service client

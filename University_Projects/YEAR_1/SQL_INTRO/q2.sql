@@ -1,0 +1,1 @@
+select ItemNumber, ItemName, Price, Colour, Weight, City from DejisItems;

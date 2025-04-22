@@ -1,0 +1,77 @@
+<Button>
+    size_hint: (.2, .2)
+    font_size: 32
+    background_color: (0.6, 0.6, 0.6, 1)
+
+<MyLayout>
+    BoxLayout:
+
+        orientation: "vertical"
+        size: root.width, root.height
+
+        TextInput:
+            id: calc_input
+            text: "0"
+            #   Alignsthe text in the right side of text box
+            halign: "right"
+            font_size: 38
+            size_hint: (1, .20)
+        
+        GridLayout:
+            cols: 4
+            rows: 5
+
+            Button:
+                text: "%"
+                background_color: (0.9, 0.9, 0.9, 1)
+            Button:
+                text: "CE"
+                background_color: (0.9, 0.9, 0.9, 1)
+            Button:
+                id: clear_btn
+                text: "C"
+                background_color: (0.9, 0.9, 0.9, 1)
+                on_press: root.clear_input()
+
+            Button:
+                text: "<x"
+                background_color: (0.9, 0.9, 0.9, 1)
+
+            Button:
+                text: "7"
+                
+            Button:
+                text: "8"
+                
+            Button:
+                text: "9"
+            Button:
+                text: "X"
+                background_color: (0.9, 0.9, 0.9, 1)
+            Button:
+                text: "4"
+            Button:
+                text: "5"
+            Button:
+                text: "6"
+            Button:
+                text: "-"
+                background_color: (0.9, 0.9, 0.9, 1)
+            Button:
+                text: "1"
+            Button:
+                text: "2"
+            Button:
+                text: "3"
+            Button:
+                text: "+"
+                background_color: (0.9, 0.9, 0.9, 1)
+            Button:
+                text: "+/-"
+            Button:
+                text: "0"
+            Button:
+                text: "."
+            Button:
+                text: "="
+                background_color: (0.9, 0.9, 0.9, 1)

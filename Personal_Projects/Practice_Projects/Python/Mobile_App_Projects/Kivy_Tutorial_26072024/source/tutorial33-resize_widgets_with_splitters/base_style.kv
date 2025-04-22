@@ -1,0 +1,45 @@
+##  Adding Splitters -- they can be pulled and dragged to resize Widgets (buttons, Labels, and such)
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Splitter:
+            sizable_from: "bottom"
+            Button:
+                text: "Look! Behold!"
+                font_size: 32
+        
+        Label:
+            text: "A man whose eyes are opened, who sees the visions of God"
+            font_size: 24
+        
+        Splitter:
+            sizable_from: "top"
+            Label:
+                text: "Son of Man, what do you see?"
+                font_size: 32
+        
+        Splitter:
+            sizable_from: "top"
+            Button:
+                text: "Prophecy, Son of Man!"
+                font_size: 32
+        
+        Splitter:
+            sizable_from: "top"
+            GridLayout:
+                cols: 2
+
+                Button:
+                    text: "Left"
+                    font_size: 32
+                
+                Splitter:
+                    sizable_from: "left"
+                
+                    Button:
+                        text: "Right"
+                        font_size: 32

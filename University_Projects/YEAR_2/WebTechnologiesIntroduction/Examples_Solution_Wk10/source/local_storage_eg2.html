@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Local Storage</title>
+        <style>
+            div#s_editable
+            {
+                font-size:xx-large;
+                border: 5px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>
+            Saving some data locally on my device and editing its content live with JS.<br/>
+            See this, when you type in something into the typable area it's gonna be saved and
+            thus remain though you refresh the page.
+        </h2>
+        <h3>Typable Area:</h3><br/>
+        <div id="s_editable" contentEditable="true">
+            The editable area!
+        </div>
+        <script>
+            function load()
+            {
+                var e = document.getElementById("s_editable");
+                if (localStorage.contents)
+                    e.innerHTML = localStorage.contents;
+            }
+            function save()
+            {
+                var e = document.getElementById("s_editable");
+                localStorage.contents = e.innerHTML;
+            }
+
+            load();
+
+            // When the editablemcontent loses focus
+            document.getElementById("s_editable").onblur = save;
+        </script>
+    </body>
+</html>

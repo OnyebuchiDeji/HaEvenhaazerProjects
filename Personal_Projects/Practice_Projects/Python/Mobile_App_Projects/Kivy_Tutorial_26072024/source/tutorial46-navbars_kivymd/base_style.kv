@@ -1,0 +1,159 @@
+#   Testing implementation of MDNavigationBar -- they navigate between screens
+
+##  The icon names are gotten from this site -- kivy uses them: materialdesignicons.com
+
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+
+<BaseMDNavigationItem>
+    name: self.name
+    #   `root` is used because MDNavigationItemIcon and MDNavigationItemLabel
+    #   are objects created in BaseMDNavigationItem, the latter being their root.
+    MDNavigationItemIcon:
+        icon: root.icon
+    MDNavigationItemLabel:
+        text: root.text
+    
+    # MDButton:
+    #     text: "Add Paragraph"
+    #     on_press: root.add_paragraph()
+
+<BaseScreen>
+    MDBoxLayout:
+        md_bg_color: app.theme_cls.primaryColor
+        orientation: "vertical"
+        MDLabel:
+            markup: True
+            # background_color: (1, 0, 0, 1)
+            
+            size_hint: None, None
+            size: root.width*0.5, root.height*0.1
+            
+            # canvas.before:
+            #     Color:
+            #         rgba: app.theme_cls.primaryColor
+            #     RoundedRectangle:
+            #         size: self.size
+            #         pos: self.pos
+            #         radius: [20]
+
+            text: "[b][size=30]" + root.screen_title + "[/size][/b]"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y":0.5}
+            # font_size: 500
+            text_size: 500, 500
+            color: app.theme_cls.inversePrimaryColor
+                
+
+            ##  Changing Font Size just isn't working
+            # font_size: 500
+            # size_hint: None, None
+            # size: 100, 100
+            # size_hint: (1, 1)
+            # text_size: 400, 400
+
+            allow_selection: False
+
+        MDLabel:
+            markup: True
+            text: "[size=20]"+root.text+"[/size]"
+            halign: "center"
+
+            allow_selection: True
+            color: app.theme_cls.inversePrimaryColor
+
+<MyBoxLayout>
+    orientation: 'vertical'
+    md_bg_color: self.theme_cls.backgroundColor
+
+    #   Just to show info if the app
+    MDTopAppBar:
+        type: "small"
+        size_hint_x: 0.95
+        # pos_hint: {"center_x": .5, "center_y": .5}
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: "Bottom Navigation Bar Demonstration"
+            color: 1, 0, 1, 1
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+    
+    MDScreenManager:
+        id: id_screen_manager
+
+        BaseScreen:
+            name: "Screen 1"
+            screen_title: "Screen 1"
+            text: "Pree Screen 1\nPretty Cool aii?"
+            _n: self.add_text("Only beef is that font size isn't changing normally.")
+            _n2: self.add_text("But I just remembered markup!")
+        BaseScreen:
+            name: "Screen 2"
+            screen_title: "Screen 2"
+            text: "Pree Screen 2\n Nice too isn't it."
+        BaseScreen:
+            name: "Screen 3"
+            screen_title: "Screen 3"
+            text: "Pree Screen 3\n Never be lazy!\nThese things can be used easily to make any app."
+            ##  The below didn't work as planned because only the last one called
+            ##  is actually executed.
+            ##  this is because they are associated to the attribute _n
+            ##  and the last function is its final value. So on compiling, that's what is executed.
+            # _n: self.add_text("Check it out!")
+            # _n: self.add_text("Adding text this way is so cool!")
+            # _n: self.add_text("Since it's the same attribute, the stack is not in danger!")
+            # _n: self.add_text("By calling methods with a non-used attribute!")
+            ##  So give them different names
+            _a: self.add_text("Check it out!")
+            _b: self.add_text("Adding text this way is so cool!")
+            _c: self.add_text("Since it's the same attribute, the stack is not in danger!")
+            _d: self.add_text("By calling methods with a non-used attribute!")
+
+
+        
+    #   Colors were not changing
+    MDNavigationBar:
+        #   Can add color stuff here
+        # set_bars_color: True
+        # md_bg_color: app.theme_cls.tertiaryColor
+
+        #   Registering method for when tabs are switched.
+        on_switch_tabs: app.on_switch_tabs(*args)
+
+        ##  Cannot add custom name attribute
+        ##  it will not be included in the above function `on_switch_tabs`.
+        ##  *args only takes the MDNavigationBar object, the BaseMDNavigationItem object
+        ##  the icon name and the text
+        BaseMDNavigationItem:
+            name: "Screen 1"
+            icon: "language-python"
+            text: "Screen 1"
+            active: True
+            
+        BaseMDNavigationItem:
+            name: "Screen 2"
+            icon: "youtube"
+            text: "Screen 2"
+
+        BaseMDNavigationItem:
+            name: "Screen 3"
+            icon: "instagram"
+            text: "Screen 3"

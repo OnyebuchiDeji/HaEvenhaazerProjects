@@ -1,0 +1,69 @@
+
+#   MDButton.style must be one of: ['elevated', 'filled', 'tonal', 'outlined', 'text']
+
+
+#   THIS IS NOT HOW A BUTTON IS GIVEN TEXT HERE
+# <MDButton>
+#     #   For MD, this is how colors are defined in the .kv file
+#     # color: "Purple"
+#     # adaptive_size: True
+#     # bold: True
+#     # font_size: 33
+#     # pos: "12dp", "12dp"
+
+#   THIS IS!
+# MDButton:
+#     style: "elevated"
+#     pos_hint: {"center_x": .5, "center_y": .5}
+
+#     MDButtonIcon:
+#         icon: "plus"
+
+#     MDButtonText:
+#         text: "Elevated"
+
+#   For some reason, defining the properties of MDButtonText so that
+#   it can be in every instance doesn't work
+#   Also cannot do `color: (1, 0, 0, 1)`
+#   More also cannot do:
+    #   MDButton:
+    #       color: "red"
+# <MDButtonText>
+#     # color: (1, 0, 0, 1)
+#     color: "red"
+
+MDScreen:
+    # theme_bg_color: "Custom"
+    # md_bg_color: self.theme_cls.backgroundColor
+
+    MDButton:
+        style: "elevated"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        MDButtonText:
+            # color: "red"
+            text: "First Button"
+
+    MDButton:
+        style: "outlined"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+        MDButtonText:
+            text: "Second Button"
+
+
+    MDButton:
+        style: "filled"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        MDButtonText:
+            text: "Third Button"
+
+    MDButton:
+        style: "text"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+        MDButtonText:
+            text: "Forth Button"
+
+    MDButton:
+        style: "tonal"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+        MDButtonText:
+            text: "Fifth Button"

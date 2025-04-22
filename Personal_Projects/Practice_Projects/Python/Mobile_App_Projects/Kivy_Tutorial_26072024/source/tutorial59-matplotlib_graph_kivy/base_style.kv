@@ -1,0 +1,52 @@
+#   Demonstrating How to render a Matplotllib graph with Kivy
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+
+<MattGraph>
+    md_bg_color: self.theme_cls.backgroundColor
+    orientation: 'vertical'
+    padding: "0dp"
+    spacing: "5dp"
+
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        id: id_topbar
+        type: "small"
+        size_hint_x: 0.95
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: app.title
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+
+    BoxLayout:
+        id: id_box_layout
+    
+    BoxLayout:
+        size_hint_y: .1
+        # pos_hint: {"top": }
+        TextInput:
+            id: id_tb_name
+            multiline: False
+        Button:
+            text: "Save Graph" 
+            on_release: root.save_it()

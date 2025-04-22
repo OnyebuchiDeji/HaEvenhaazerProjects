@@ -1,0 +1,48 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Drawing Arcs</title>
+    </head>
+
+    <body>
+        <h2>Drawing Arcs</h2>
+        <canvas id="dejiCanvas" width="960" height="540" style="border: 1px solid black">
+            If the canvas could be rendered, this text will be placeholder for it
+        </canvas>
+
+        <script>
+            /**
+             * Arcs are also formed y paths, one that traces an arc of a circle
+            */
+            var mycanvas = document.getElementById("dejiCanvas");
+            var ctx = mycanvas.getContext("2d");
+
+            ctx.beginPath();
+            // .arc(x, y, r, startAngle, endAngle, anticlockwise);
+            ctx.arc(250, 250, 50, 0, 2 * Math.PI, false);
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 20;
+            ctx.fillStyle="grey";
+            ctx.fill();
+            ctx.closePath();
+            ctx.stroke();
+
+            //  A Smily Face
+            ctx.beginPath();
+            ctx.lineWidth = 5;
+            // Face
+            ctx.arc(75, 75, 50, 0, Math.PI * 2, true);
+            //  Smile
+            ctx.moveTo(110, 75);
+            ctx.arc(75, 75, 35, 0, Math.PI, false);
+            //  Eyes
+            ctx.moveTo(65, 65);
+            ctx.arc(60, 65, 5, 0, Math.PI * 2, true);
+            ctx.moveTo(95, 65);
+            ctx.arc(90, 65, 5, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.stroke();            
+
+
+        </script>
+    </body>
+</html>

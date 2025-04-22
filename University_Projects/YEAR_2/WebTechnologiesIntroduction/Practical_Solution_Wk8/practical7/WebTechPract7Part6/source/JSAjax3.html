@@ -1,0 +1,31 @@
+<!DOCTYPE html><html>
+    <head>
+        <!-- 
+            Pract 7 Part 6
+            NOTE that here Ajax is used!
+
+            Note that unlike example 2 this does not use a form.
+            The getquote uses an enum that maps to a unique quote.
+            The highest enum value should be 151 as indicated by example 2.
+            So the random generated value will have to be appended to the link passed to the...
+            makeRequest method
+         -->
+        <title>Using JS and Ajax for Web-Service Calls</title>
+        <!--
+            Make sure to add defer if your're ptting the script at the top fo html file
+            to ensure that the JS can see everything in the DOM
+        -->
+        <script type="text/javascript" src="get_quote3.js" defer></script>
+    </head>
+
+    <body>
+        <button id="clickme">Request for a Quote</button><br>
+        <h3>Your quote for the day is</h3>
+        <!-- 
+            Task:
+            Modify the quote element to show a random quote from getquote.php...
+            any time the button is pressed.
+         -->
+        <quote id="myquote">...</quote>
+    </body>
+</html>

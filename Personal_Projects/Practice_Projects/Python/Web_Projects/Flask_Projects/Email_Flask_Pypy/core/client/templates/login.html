@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block script_include %}
+<script type="text/javascript" defer src="{{url_for('static', filename='scripts/confirmation_redirect_1-loop.js')}}"></script>
+{% endblock %}
+
+
+{% block main_content%}
+
+
+<h3>Click on the link to verify your email</h3>
+
+<a href="verify-email">Click Me!</a>
+
+<b>Status: {{message}}</b>
+
+{%endblock%}

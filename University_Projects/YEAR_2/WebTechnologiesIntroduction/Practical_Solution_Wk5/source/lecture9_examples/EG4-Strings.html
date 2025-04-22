@@ -1,0 +1,37 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <title>
+            Strings
+        </title>
+    </head>
+
+    <body>
+        
+        <?php
+            echo "This is PHP! <br>";
+
+            //  EG1
+            echo "Hello " . "world!"
+            $msg = "Hello";
+            //  To get $msg = "Hello Bro!"
+            $msg .= " Bro!"; 
+
+            //  EG2
+            $a = 5;
+            //  Difference between using double quotes and single quotes.
+            //  The type used affects the evaluation of PHP code
+            /*
+                For example, the below prints:
+                a: 5
+                a: $a
+
+                Double quotes evaluates the variable.
+                Whereas, single quotes does not, preserving the actual string
+            */
+            echo "a: $a<br>";
+            echo 'a: $a';
+ 
+
+        ?>
+    </body>
+</html>

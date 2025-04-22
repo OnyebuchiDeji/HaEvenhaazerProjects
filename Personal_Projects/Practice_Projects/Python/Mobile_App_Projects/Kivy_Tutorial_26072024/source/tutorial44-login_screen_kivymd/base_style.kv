@@ -1,0 +1,111 @@
+#   Creating a Login App Kivy
+
+##  Modes for MDTextField are: "outlined", "rectangle", "filled"
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+    size: "100dp", "65dp"
+
+
+
+<MyScreen>
+    #   Ken that things are added to the MDCard from the bottom
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: "vertical"
+    
+        MDLabel:
+            markup: True
+            id: id_welcome_label
+            text: "[i]WELCOME[/i]"
+            color: "white"
+            font_size: 100
+            halign: 'center'    #   Defines Label's position
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+
+            #   `text_size` is for textures
+            # text_size: (100, 100)
+            # adaptive_size: True
+
+            #   These label's position
+            # pos: "12dp", "12dp"
+            
+            
+        MDTextField:
+            id: id_tf_user
+            mode: "outlined"
+            size_hint_x: None
+            width: 280
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+            MDTextFieldHintText:
+                text: "Enter Username"
+
+            MDTextFieldHelperText:
+                text: "Username should be a mix of characters."
+                mode: "persistent"
+
+            # MDTextFieldLeadingIcon:
+            #     icon: "account"
+
+            MDTextFieldTrailingIcon:
+                icon: "account"
+
+        MDTextField:
+            id: id_tf_pswd
+            mode: "outlined"
+            size_hint_x: None
+            width: 280
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+
+            MDTextFieldHintText:
+                text: "Enter Password"
+
+            MDTextFieldHelperText:
+                text: "A mix of letters, numbers, and special characters."
+                mode: "persistent"
+
+            MDTextFieldTrailingIcon:
+                icon: "eye-off"
+        
+        MDButton:
+            style: "outlined"
+            pos_hint: {"center_x": 0.5}
+            on_press: app.login()
+            
+            MDButtonText:
+                text: "LOGIN"
+                font_size: 12
+
+        MDButton:
+            style: "outlined"
+            pos_hint: {"center_x": 0.5}
+            on_press: app.clear()
+
+            MDButtonText:
+                text: "CLEAR"
+                font_size: 12
+
+        #   To push everything up
+        Widget:
+            size_hint_y: None
+            height: 10
+
+
+    MDButton:
+        id: id_theme_btn
+        on_release: app.toggle_theme()
+        text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+        MDButtonText:
+            text: id_theme_btn.text

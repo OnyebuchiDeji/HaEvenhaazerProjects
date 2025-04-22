@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.o">
+    <title>Markdown to HTML</title>
+</head>
+
+<body>
+    <!--Insert the converted Markdown content here-->
+    <p>Date: wed-5-June-2024</p>
+    <p>Heading Types</p>
+    <h1>Heading 1</h1>
+    <h2>Heading 1</h2>
+    <h3>Heading 1</h3>
+    <h4>Heading 1</h4>
+    <h5>Heading 1</h5>
+    <h6>Heading 1</h6>
+    <h6># Heading 1 &lt;- Just text</h6>
+    <p>Bolding and Italics
+        Yo, here is a sentence: <strong>woke up</strong> blessed!
+        I feel good... so <strong>good</strong>
+        I <em>feel</em> so _good*</p>
+    <h2>Can even use HTML</h2>
+    <p>I've been revuved <span style="color: red">So Truuuueee</span></p>
+    <h2>Hard Breaks Vs. Soft breaks</h2>
+    <p>Here is line 1.
+        Here is line 2.
+        They are separated in md text.
+        But not in the actual markdown render.</p>
+    <p>Here is line 1.</p>
+    <p>Here is line 2.</p>
+    <p>This is a hard break. But I want a soft break, so I use <br>.</p>
+    <p>This is line 1.<br>
+        This is line 2.<br>
+        Can even use <br>, for soft breaks.</p>
+    <h2>These are for links:</h2>
+    <p>First way to do a link
+        <a href="https://google.com/">this is a random link</a>
+    </p>
+    <p>Second way:</p>
+    <p>The <code>alink</code> can be used from anywhere in the md file</p>
+    <p><a href="https://google.com/">Pree from anwhere</a></p>
+    <p>For this second way, it was used here
+        <a href="https://google.com/">Link to pree</a>
+    </p>
+    <p>Link defined here:</p>
+    <h2>Adding comments</h2>
+    <p>First way to add comments:</p>
+    <p>Second way:</p>
+    <h2>Adding/linking images</h2>
+    <p><a href="../resources/2003289.jpg">MyPic1</a></p>
+    <p>Same image, but rendered and displayed in the markdown file:
+        <img alt="MyPic1" src="../resources/2003289.jpg" />
+    </p>
+    <p>Can even reference the image link from anywhere in markdown file.
+        Check it:
+        <img alt="MyPic1" src="../resources/2003289.jpg" />
+    </p>
+    <p>Ref defined here:</p>
+    <h2>Block quoutes -- uses angled brackets</h2>
+    <blockquote>
+        <p>"There is a Spirit in man, and the breath of the Almiighty gives him understanding. That breath has been
+            given to me."</p>
+        <p>"- Elihu"</p>
+    </blockquote>
+    <h2>Making lists:</h2>
+    <h4>First way:<br></h4>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+    </ul>
+    <h4>Second way:<br></h4>
+    <ul>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+    </ul>
+    <h4>Can even stack:<br></h4>
+    <ul>
+        <li>item 5<ul>
+                <li>Consistuent 1<ul>
+                        <li>bolts</li>
+                        <li>diodes</li>
+                        <li>microcontroller board (raspberry pi)<ul>
+                                <li>fan</li>
+                                <li>exoskeleton/casing</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>item 6</li>
+        <li>item 7</li>
+    </ul>
+    <h4>Numbered lists:<br></h4>
+    <h5>Steps to making the static site:</h5>
+    <ol>
+        <li>Create base HTML, CSS, JS<ol>
+                <li>Make base html</li>
+                <li>Structure using template elements</li>
+                <li>write JS to load each corresponding element appropriately.</li>
+                <li>Add topbar button and theme button elements.<ol>
+                        <li>Download icons</li>
+                        <li>Add to template.</li>
+                        <li>Write JS to load them from template element.</li>
+                        <li>Write JS to add or remove class appropriately to notify it on when the topbar toggle button
+                            is clicked or note</li>
+                    </ol>
+                </li>
+                <li>Implement resizeing function and the removing of topbar nav items when size shrinks past 769px<ol>
+                        <li>Use JS to create and remove classes appropriately to indicate when resizing has occured, and
+                            using the class from the topbar button, to know in what way to display the nav elements in
+                            different size thresholds.<ul>
+                                <li>A long explanation</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <h2>Code Snippets:</h2>
+    <h4>For Python:</h4>
+    <p>```python</p>
+    <p>print("Yo! Revived!")</p>
+    <p>```</p>
+    <h4>For Java</h4>
+    <p><code>java
+System.out.println("Yh! this is Jaja!\n");</code></p>
+    <h4>For C++:</h4>
+    <p>```cpp</p>
+    <h1>include <iostream>
+    </h1>
+    <p>int main()
+        {
+        std::cout &lt;&lt; "BRUH!\n";
+        }</p>
+    <p>```</p>
+    <h4>Code Without Syntac Highlighting</h4>
+    <p><code>pip install vidstream</code></p>
+    <p><code>sh
+curl `some_link`</code></p>
+    <h2>Tables in Markdown<br></h2>
+    <p>|Name|Age|Height|
+        |----|---|------|
+        |Jonathan|21|180|
+        |Keneth|20|182|</p>
+    <p>Here is a seperator to seperate sections:</p>
+    <p>```</p>
+    <p>Here is something with strike-through style<br>
+        ~~Struck Through~~</p>
+    <p>```</p>
+    <h2>For Check Lists -- Marking Milestone <br></h2>
+    <p>Pree the check boxes <br></p>
+    <ul>
+        <li>[x] Milestone 1</li>
+        <li>[x] Milestone 2</li>
+        <li>[x] Milestone 3</li>
+        <li>[] Milestone 4</li>
+        <li>[x] Milestone 5</li>
+        <li>[] Milestone 6</li>
+        <li>[] Milestone 7</li>
+    </ul>
+    <p><code>This didn't evaluate because I put it in a section
+surrounded by these "</code> ```" quotes</p>
+    <h2>Subscription and Superscribtion <br></h2>
+    <p>X<sub>1</sub> and X<sub>2</sub></p>
+    <p>X<sup>2</sup> = X * X</p>
+    <p>```</p>
+    <h2>Subscription and Superscribtion Now Working<br></h2>
+    <p>X<sub>1</sub> and X<sub>2</sub></p>
+    <p>X<sup>2</sup> = X * X</p>
+    <h2>Rendering Math Formulas</h2>
+    <p>LateX in MD Inline $\Phi^{2} + x = 3$</p>
+    <p>Putting two dollars shows the eqation in a separate line <br></p>
+    <p>It does it in Display mode:<br></p>
+    <p>LateX in MD Display $$\Phi^{2} + x = 3$$</p>
+    <p>Though Inline mode does wortk: <br>
+        LateX in MD Inline $$\Phi^{2} + x = 3$$</p>
+</body>
+
+</html>

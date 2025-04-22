@@ -1,0 +1,24 @@
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Carousel:
+            #   It determines the starting scrolling direction.
+            #   E.g. If left, it scrolls leftward first to end, then right ward
+            #   But if right, it can only start scrolling from right
+            #   To scroll to right -- there's also left, top, bottom
+            direction: "left"
+
+            Image:
+                source: "resources/2003378.jpg"
+            Image:
+                source: "resources/2003379.jpg"
+            Image:
+                source: "resources/2003873.jpg"
+            Image:
+                source: "resources/2003117.jpg"
+            Image:
+                source: "resources/2003289.jpg"

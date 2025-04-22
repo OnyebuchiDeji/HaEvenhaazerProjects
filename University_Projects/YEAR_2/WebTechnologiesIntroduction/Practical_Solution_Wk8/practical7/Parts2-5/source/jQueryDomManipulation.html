@@ -1,0 +1,162 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>JQuery DOM Manipulation - HTML Element Setting, Copying, Moving, Removing, Creating and Adding New Elements</title>
+        <!-- 
+            This script goes over the PArt4 of the practical 7
+            It focuses on DOM manipulation, specifically inserting HTML, Moving, Copying, Removing elements from the DOM...
+            Creating and Adding New elements to the DOM
+         -->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+
+            // Using jQuery
+
+            // This is the easy way jQUery enables creating new elements using $()
+            //  Then Adding the element to the page
+            function createNewElements()
+            {
+                var newParagraph = $("<p>This is a new paragraph</p>");
+                var newList = $("<li class='new'>new list item</li>");
+
+                //  Creatung a new element with an attribute
+                var newLink = $("<a>",
+                    {
+                        html: "This is a new link",
+                        //  Only 'class' is in quotes as it is a reserved word
+                        "class": "new",
+                        href: "jQueryDomManipulation.html"
+                    }
+                );
+
+                //  Adding these elements to the page
+                newParagraph.appendTo("#main");
+                newList.appendTo("#main");
+                newLink.appendTo("#main");
+            }
+
+            $(function()
+            {
+                //  SETTING AN HTML'S ELEMENT BY ADDING NEW HTML CONTENT
+                $("#add_html").click(
+                    function()
+                    {
+                        $("#mySection").html("<p>New <strong>first</strong>paragraph!</p>")
+                    }
+                );
+                    
+                /**
+                 * One can place the selected element relative to another element
+                 * OR
+                 * One can place an element relative to the selected element
+                 * 
+                 * insertAfter() method: places the element (that calls the method) after the element provided as an argument.
+                 * after() method: places the element provided as an argument after the selected ellement (the one calling the method).#-insertBefore() and insert()
+                 * appendTo() and append()
+                 * prependTo() and prepend()
+                 * 
+                 * Yo! append() is not the same as after().
+                 * append will literally make the selected element to be appended to the target element specified...
+                 * thereby making them the same element. this then affects the child count using :nth-child()...
+                 * which was the reason for why it tool me so long.
+                 * But the code below works appropriately, replacing append() with insertAfter() after
+                */
+                $("#move_element").click(
+                    //  This works on the element of id 'dict'
+                    function()
+                    {
+                        $("#dict dt:first").insertAfter("#dict dt:nth-child(3)");
+                        $("#dict dd:first").insertAfter("#dict dt:nth-child(3)");
+                        $("#dict dd:nth-child(4)").insertBefore("#dict dt:nth-child(2)");
+                        //  OR
+                        // $("#dict dt:nth-child(3)").after($("#dict dt:first"));
+                        // $("#dict dt:nth-child(3)").after($("#dict dd:nth-child(1)"));
+                        // $("#dict dt:nth-child(2)").before($("#dict dd:nth-child(4)"));
+
+                        /**
+                         * Doing it this way causes the dt to be put in fron of a dd, not excluding the tab
+                         * try it.
+                         * Now found out that append() is not meant to be used -- it messes up numbering
+                        */
+                        // $("#dict dd:nth-child(4)").append($("#dict dt:first"));
+                        // $("#dict dd:nth-child(3)").append($("#dict dd:nth-child(1)"));
+                        
+                        /**  For testing sakes
+                        *  Discovered that it keeps count of each child in the parent...
+                        *  specifically when using nth-child() --- it doesn't pay attention to the fact...
+                        *  that it is written this way:
+                        *  dt:nth-child() or dd:nth-child()...
+                        *  If anything, mentiioning what elements you're targeting gives css information about its parent.
+                        *  Still it helss make sure you know which one you're selecting.
+                        *  For example, if a dt is the first elemeent, you cannot select it by typing #dict dd:nth-child(1)
+                        */
+                        // $("#dict dt:nth-child(2)").css("background", "red");
+                    }
+                );
+
+                $("#copy_element").click(
+                    function()
+                    {
+                        //  This is how the selection is made.
+                        //  p:first refers to the first p element that is a child of the element...
+                        //  with id mySections
+                        $("#mySection p:first").clone().appendTo("#mySection");
+                    }
+                );
+                
+                /**
+                 * .remove() method: permanently removes a selected element from the page.
+                 * .detach() method:  should be used if data and events are to persist. It returns the selected element...
+                 * however it maintains the data and events associated with that element in case the element would be restored...
+                 * to the page later.
+                 * .empty() method: It leaves an element on the page but removes its contents, disposing of its inner HTML
+                */
+                $("#remove_element").click(
+                    function(eventCaller)
+                    {
+                        $("#mySection p:last").remove();
+                        // $("#mySection p:last").detach();
+                    }
+                );
+
+                createNewElements();
+            });
+
+        </script>
+
+        <style type="text/css">
+            #pic{
+                display: none;
+                position: absolute;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="main">
+            <h2>Blender Image</h2>
+            <div id="mySection"></div>
+            <!-- <img src="../resources/neurosci_syphillis_info.jpg" id="pic"> -->
+            <dl id="dict">
+                <dt>jQuery</dt>
+                <dd>A JavaScript library that enhances development productivity</dd>
+                <dt>jQuery-UI</dt>
+                <dd>A jQuery plugin that provides user-interface widgets</dd>
+                <dt>dojo</dt>
+                <dd>A popular JavaScript library</dd>
+                <dt>PHP</dt>
+                <dd>A server-side scripting language originally known as 'Personal Home Page'</dd>
+                <dt>MySQl</dt>
+                <dd>A relational database commonly used to implement the data tier in web-based application development</dd>
+            </dl>
+
+            <!-- //  This is Part 4.1 -->
+            <button id="add_html">Add HTML</button><br>
+            <!-- //  These are Part 4.2 -->
+            <button id="move_element">Move Element</button><br>
+            <button id="copy_element">Copy Element</button><br>
+            <button id="remove_element">Remove Element</button><br>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,255 @@
+<html>
+<script src="dailyweatherdata.js"></script>
+<script src="weatherforecast.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
+  integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+<style>
+
+  /* 
+    In this version, I succeeded in making a function object, a class like construct, to make
+    creating charts more simple.
+
+    I have found out that when changing style properties, I am always to use Strings...
+    for things like pixels(px) and such
+
+    Also, I have corrected the graphs for Humidity, Temperature, and Wind...
+    so that the labels display the right information.
+
+    Date of Change: Sun-10-Dec-2023
+  */
+
+  canvas {
+    width: 1000px !important;
+    height: 400px !important;
+  }
+</style>
+
+<body>
+  <button id="tempChartStoke" onclick="changeToBar(this); changeColor(this, 'red')" >Change Graph Type</button>
+  <label class="lon_stoke"></label>
+  <label class="lat_stoke"></label>
+  <br>
+  <canvas id="TemperatureChartStoke"></canvas>
+  <br><br><br>
+
+  <button id="tempChartLondon" onclick="changeToBar(this); changeColor(this, 'rebeccapurple')" >Change Graph Type</button>
+  <label class="lon_london"></label>
+  <label class="lat_london"></label>
+  <br>
+  <canvas id="TemperatureChartLondon"></canvas>
+  <br><br><br>
+
+  <button id="windChartStoke" onclick="changeToBar(this); changeColor(this, 'violet')" >Change Graph Type</button>
+  <label class="lon_stoke"></label>
+  <label class="lat_stoke"></label>
+  <br>
+  <canvas id="WindChartStoke"></canvas>
+  <br><br><br>
+
+  <button id="windChartLondon" onclick="changeToBar(this); changeColor(this, 'salmon')">Change Graph Type</button>
+  <label class="lon_london"></label>
+  <label class="lat_london"></label>
+  <br>
+  <canvas id="WindChartLondon"></canvas>
+  <br><br><br>
+
+  <button id="humidityChartStoke" onclick="changeToBar(this); changeColor(this, 'olive')" >Change Graph Type</button>
+  <label class="lon_stoke"></label>
+  <label class="lat_stoke"></label>
+  <br>
+  <canvas id="HumidityChartStoke"></canvas>
+  <br><br><br>
+
+  <button id="humidityChartLondon" onclick="changeToBar(this); changeColor(this, 'sienna')" >Change Graph Type</button>
+  <label class="lon_london"></label>
+  <label class="lat_london"></label>
+  <br>
+  <canvas id="HumidityChartLondon"></canvas>
+  <br><br><br>
+
+
+
+</body>
+
+<script>
+
+  //  Object Coordinatelabel
+  function CoordinateLabel()
+  {
+    this.labels = new Array();
+    // this.longLabel = new Array();
+    // this.latLabel = new Array();
+    
+    this.initialize = function(city, data, longLabelClass, latLabelClass)
+    {
+      this.coordData = data;
+      this.longLabel = longLabelClass;
+      this.latLabel = latLabelClass;
+      for (i=0; i<this.longLabel.length; i++)
+      {
+        this.longLabel[i].innerHTML = "LONGITUDE " + city.toUpperCase() + ": " + this.coordData.coord.lon;
+        this.latLabel[i].innerHTML = "LATITUDE " + city.toUpperCase() + ": " + this.coordData.coord.lat;
+      }
+    
+    }
+  
+    this.setColor = function(color)
+    {
+      for (i=0; i < this.longLabel.length; i++)
+      {
+        this.longLabel[i].style.color = color;
+        this.latLabel[i].style.color = color;
+      }
+    }
+  
+    this.setBackgroundColor = function(color)
+    {
+      for (i=0; i < this.latLabel.length; i++)
+      {
+        this.longLabel[i].style.backgroundColor = color;
+        this.latLabel[i].style.backgroundColor = color;
+      }
+    }
+  }
+
+  function DataList()  {
+
+    this.initialize = function(data)
+    {
+      this.forecastData = data;
+
+      this.DateList = this.forecastData.list.map(list => {
+        return list.dt_txt;
+      });
+
+      this.TemperatureList = this.forecastData.list.map(list => {
+        return list.main.temp;
+      });
+      this.WindList = this.forecastData.list.map(list => {
+        return list.wind.speed;
+      });
+      this.HumidityList = this.forecastData.list.map(list => {
+        return list.main.humidity;
+      });
+    }
+
+  }
+    
+  
+  //TODO: Task 1:
+  var coordStoke = new CoordinateLabel();
+  coordStoke.initialize("Stoke", JSON.parse(dailydata_stoke), document.getElementsByClassName("lon_stoke"), document.getElementsByClassName("lat_stoke"));
+  var coordLondon = new CoordinateLabel();
+  coordLondon.initialize("London", JSON.parse(dailydata_london), document.getElementsByClassName("lon_london"), document.getElementsByClassName("lat_london"));
+
+
+  coordStoke.setColor("lightblue");
+  coordStoke.setBackgroundColor("darkgray");
+  coordLondon.setColor("green");
+  coordLondon.setBackgroundColor("darkgray");
+
+
+  var StokeDataList = new DataList();
+  StokeDataList.initialize(JSON.parse(forecast_stoke));
+  var LondonDataList = new DataList();
+  LondonDataList.initialize(JSON.parse(forecast_london));
+
+
+  var chartWidth = "720px"; var chartHeight = "405px"; var chartBorderWidth = "15px";
+
+
+  function ChartHandler()
+  {
+    this.initialize = function(ctx, chartLabel, dateList, dataList, graphBgCol, graphBorderCol)
+    {
+      this.chartCtx = ctx;
+      this.chartCtx.getContext('2d');
+      this.chartCtx.style.width = chartWidth;
+      this.chartCtx.style.height = chartHeight;
+      this.chartCtx.style.backgroundColor = 'gainsboro';
+      this.chartCtx.style.borderStyle = "solid";
+      this.chartCtx.style.borderWidth = "10px";
+      this.chartCtx.style.borderColor = "black";
+
+      this.chart = new Chart(this.chartCtx,
+        {
+          type:"line",
+          data:{
+            labels: dateList,
+            datasets: [
+              {
+                label: chartLabel,
+                backgroundColor: graphBgCol,
+                borderColor: graphBorderCol,
+                fill: false,
+                data: dataList,
+              },
+            ]
+          }
+        });
+    }
+  }
+
+  var tempChartStoke = new ChartHandler();
+  tempChartStoke.initialize(document.getElementById('TemperatureChartStoke'), "Temperature",
+                            StokeDataList.DateList, StokeDataList.TemperatureList, "lightblue", "blue");
+
+  chartsArray.push(tempChartStoke);
+  var tempChartLondon = new ChartHandler();
+  tempChartLondon.initialize(document.getElementById('TemperatureChartLondon'), "Temperature",
+                            LondonDataList.DateList, LondonDataList.TemperatureList, "green", "yellow");
+
+  var windChartStoke = new ChartHandler();
+  windChartStoke.initialize(document.getElementById('WindChartStoke'), "Wind",
+                            StokeDataList.DateList, StokeDataList.WindList, "pink", "red");
+  var windChartLondon = new ChartHandler();
+  windChartLondon.initialize(document.getElementById('WindChartLondon'), "Wind",
+                            LondonDataList.DateList, LondonDataList.WindList, "purple", "magenta");
+  var humidityChartStoke = new ChartHandler();
+  humidityChartStoke.initialize(document.getElementById('HumidityChartStoke'), "Humidity",
+                            StokeDataList.DateList, StokeDataList.HumidityList, "skyblue", "cyan");
+  var humidityChartLondon = new ChartHandler();
+  humidityChartLondon.initialize(document.getElementById('HumidityChartLondon'), "Humidity",
+                            LondonDataList.DateList, LondonDataList.HumidityList, "darkpurple", "violet");
+
+
+  function changeToBar(callingElement)
+  {
+    var element = document.getElementById(callingElement.id);
+    var elementIdAsString = element.id.toLowerCase();
+    // var chartId = 
+    if (temperatureChartStoke.config.type == "line")
+    {
+      temperatureChartStoke.config.type = "bar";
+    }
+    else
+    {
+      temperatureChartStoke.config.type = "line";
+    }
+    temperatureChartStoke.update();
+  }
+
+
+  function changeColor(callingElement, color)
+  {
+    if (color == temperatureChartStoke.data.datasets[0].backgroundColor)
+    {
+      temperatureChartStoke.data.datasets[0].backgroundColor = "lightblue";
+      temperatureChartStoke.data.datasets[0].borderColor = "blue";
+    }
+    else
+    {
+      temperatureChartStoke.data.datasets[0].backgroundColor = color;
+    }
+    
+    temperatureChartStoke.update();
+  }
+
+
+
+
+</script>
+
+</html>

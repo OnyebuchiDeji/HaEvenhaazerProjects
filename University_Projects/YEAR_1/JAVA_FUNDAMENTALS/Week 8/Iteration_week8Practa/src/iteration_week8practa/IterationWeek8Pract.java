@@ -1,0 +1,55 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package iteration_week8practa;
+
+/**
+ *
+ * @author Ebenezer Ayo-Meti
+ */
+public class IterationWeek8Pract {
+
+    public static void main(String[] args) {
+        
+        double yearlySalary = 26000.0;
+        double yearlyRaise = 300;
+        double savings = 0.0;
+        int mortgagePaymentCount = 0;
+        int totalMortgagePayments = 480;
+        double mortgage = 900;
+        double monthlyExpenses = 750;
+        int startYear = 22;
+        int endYear = 65 - 1;
+        
+        for(int year = startYear; year <= endYear; year++) {
+            for(int month = 1; month <= 12; month++) {
+                
+                double remainder = 0.0;
+                if(yearlySalary > 35000) {
+                    remainder += (35000 * 0.8) / 12.0;
+                    remainder += (((yearlySalary - 35000)) / 12.0) * 0.6;
+                } else {
+                    remainder += (yearlySalary * 0.8) / 12.0;
+                }
+                
+                if(mortgagePaymentCount < totalMortgagePayments) {
+                    remainder -= mortgage;
+                    mortgagePaymentCount++;
+                } else if(mortgagePaymentCount == totalMortgagePayments) {
+                    System.out.println("Mortgage repaid.");
+                    mortgagePaymentCount++;
+                }
+
+                remainder -= monthlyExpenses;
+                
+                savings += remainder;
+            }
+        
+            yearlySalary += yearlyRaise;
+
+            System.out.println("Bob's savings at the end of his " + year + " year of age: £" + savings);
+        }
+    }
+}
+

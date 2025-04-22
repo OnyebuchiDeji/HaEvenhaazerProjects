@@ -1,0 +1,61 @@
+#   Couldn't do the different shades of the Primary Color SchemeL
+#   light,dark, and the normal primary color
+#   Even adding text to the Buttns was different
+#   Hence it's enough to choose the theme style, primary color, and accent color
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+    size: "240dp", "65dp"
+
+
+
+MDScreen:
+    # theme_bg_color: "Custom"
+    # md_bg_color: self.theme_cls.backgroundColor
+    # md_bg_color: app.theme_cls.surfaceColor
+
+    # ref.scrimColor
+    # ref.primaryColor
+    # ref.rippleColor
+    # ref.shadowColor
+    # ref.inversePrimaryColor
+    # ref.inverseSurfaceColor
+    # ref.tertiaryColor
+
+    MDButton:
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        #   Can only be set to one of these
+        # theme_bg_color: 'Custom' # or 'Primary'
+
+        #   For some reason the Primary option allows me to define
+        #   the values of the MDButton attributes using `<MDButton>`
+        theme_bg_color: 'Primary' # or 'Custom'
+        
+        # md_bg_color: app.theme_cls.primaryColor
+        theme_bg_color: "Primary"
+        md_bg_color: app.theme_c ls.tertiaryColor
+        
+        MDButtonText:
+            # md_bg_color: app.theme_cls.shadowColor
+            text: "Light Theme Button"
+
+    MDButton:
+        theme_bg_color: "Primary"
+        md_bg_color: app.theme_cls.tertiaryColor
+        pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+        MDButtonText:
+            text: "Primary Theme Color Button"
+
+    MDButton:
+        theme_bg_color: "Primary"
+        md_bg_color: app.theme_cls.backgroundColor
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        MDButtonText:
+            text: "Dark Theme Button"
+    MDButton:
+        md_bg_color: app.theme_cls.rippleColor
+        theme_bg_color: "Primary"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        MDButtonText:
+            text: "Theme Button 4"

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <title>Local Storage Example</title>
+    </head>
+
+    <!-- 
+        sessionStorage data are confined to a small memory space provided by the browser.
+     -->
+
+    <body>
+        <script>
+            if (sessionStorage.pagecount)
+            {
+                sessionStorage.pagecount = Number(sessionStorage.pagecount) + 1;
+            }
+            else
+            {
+                sessionStorage.pagecount = 1;
+                //  Or: sessionStorage.setItem("pagecount", 1);
+            }
+
+            document.write("You have made " + sessionStorage.pagecount + " visits to this page.");
+        </script>
+    </body>
+</html>

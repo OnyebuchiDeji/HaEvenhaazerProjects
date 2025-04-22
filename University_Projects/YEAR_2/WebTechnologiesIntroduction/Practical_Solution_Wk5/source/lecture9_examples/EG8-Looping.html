@@ -1,0 +1,36 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <title>
+            Looping
+        </title>
+    </head>
+
+    <body>
+        This is HTML! <br>
+        <?php
+            //  WHILE Loop 
+            $x = 2;
+            while ($x < 24)
+            {
+                echo $x . " ";
+                $x = $x * $x;
+            }   
+
+            //  Do .. While Loop
+            //  Runs at least one time
+            $y = 3;
+            do
+            {
+                echo $y . " ";
+                $y = $y * $y;
+            } while ($x < 36);
+
+            /* For Loop */
+            for ($i = 1; $i <= 10; $i++)
+            {
+                echo $i . ":" . ($i * $i) . " ";
+            }
+        
+        ?>
+    </body>
+</html>

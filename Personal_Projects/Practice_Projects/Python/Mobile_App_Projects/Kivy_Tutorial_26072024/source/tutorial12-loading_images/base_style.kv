@@ -1,0 +1,26 @@
+#   Loading images with the Kivy Design/Style sheer
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: "vertical"        
+        size: root.width, root.height
+
+        padding: 50
+        spacing: 20
+
+        
+        Image:
+            source: "resources/of_me.png"
+            #   To modify size
+            allow_stretch: True
+            #   Preserve Aspect ratio or not
+            # keep_ratio: False
+            keep_ratio: True
+
+
+        # Button:
+        #     text: "Yo! World!"
+        
+        # Button:
+        #     text: "Peace! World!"

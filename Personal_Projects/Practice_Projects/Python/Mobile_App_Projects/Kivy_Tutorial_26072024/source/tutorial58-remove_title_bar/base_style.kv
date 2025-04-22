@@ -1,0 +1,70 @@
+#   Demonstrating How to Remove the Titlebar from Kivy App
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+
+<MyBoxLayout>
+    orientation: 'vertical'
+    md_bg_color: self.theme_cls.backgroundColor
+    padding: "0dp"
+    spacing: "5dp"
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        id: id_topbar
+        type: "small"
+        size_hint_x: 0.95
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: app.title
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+
+
+    MDScreen:
+        id: id_screen
+        BoxLayout:
+            orientation: "vertical"
+            padding: 0
+            spacing: 0
+            Label:
+                text: "Click the Button To Close this App"
+                text_size: self.size
+                size_hint: (1, .4)
+                font_size: 50
+                halign: "center"
+                valign: "middle"
+                color: "blue"
+
+            Label:
+                text: "Consider that There's No Titlebar"
+                text_size: self.size
+                font_size: 50
+                size_hint: (1, .4)
+                halign: "center"
+                valign: "middle"
+                color: "red"
+            
+            Button:
+                text: "Close App"
+                size_hint: (.5, .2)
+                pos_hint: {"center_x": .5, "center_y": .5}
+                font_size: 32
+                on_press: app.stop()

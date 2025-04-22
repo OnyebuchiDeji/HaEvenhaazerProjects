@@ -1,0 +1,42 @@
+<MyLayout>
+    fname: fname_id
+    lname: lname_id
+    color: color_id
+    print_area: print_area_id
+    
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "First Name"
+            TextInput:
+                id: fname_id
+                multiline: False    
+            Label:
+                text: "Last Name"
+            TextInput:
+                id: lname_id
+                multiline: False    
+            Label:
+                text: "Favourite Color"
+            TextInput:
+                id: color_id
+                multiline: False
+        
+        Button:
+            text: "Submit"
+            font_size: 35
+            size_hint_y: None
+            height: 100
+            on_press: root.press(self)
+        
+        Label:
+            id: print_area_id
+            text: ""
+            font_size: 20
+            size_hint_y: None
+            height: 100

@@ -1,0 +1,114 @@
+#   Demonstrating the Creation of Tictactoe
+
+
+<MDButton>
+    style: "elevated"
+    size_hint: None, None
+
+<Button>
+    color: "grey"
+
+
+<MyBoxLayout>
+    md_bg_color: self.theme_cls.backgroundColor
+    orientation: 'vertical'
+    padding: "0dp"
+    spacing: "5dp"
+
+
+    #   Just to show info of the app
+    MDTopAppBar:
+        id: id_topbar
+        type: "small"
+        size_hint_x: 0.95
+        pos_hint: {"center_x": .5}
+
+        MDTopAppBarLeadingButtonContainer:
+            # md_bg_color: (1, .2, 1, 1)
+            MDActionTopAppBarButton:
+                icon: "arrow-left"
+                # on_press: app.on_action_button_pressed(self)
+
+        MDTopAppBarTitle:
+            text: app.title
+
+        MDTopAppBarTrailingButtonContainer:
+            MDButton:
+                id: id_theme_btn
+                on_release: app.toggle_theme()
+                # text: "Switch to Dark Theme" if app.light_theme else "Switch To Light Theme"
+                text: app.theme_text_l if app.light_theme else app.theme_text_d
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                MDButtonText:
+                    text: id_theme_btn.text
+
+    MDScreen:
+        id: id_screen
+
+        MDGridLayout:
+            size_hint: .5, .5
+            pos_hint: {"center_x":.5, "center_y":.7}
+            cols: 3
+            rows: 3
+
+            Button:
+                id: btn1
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn2
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn3
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn4
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn5
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn6
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn7
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn8
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            Button:
+                id: btn9
+                text: ""
+                font_size: "45sp"
+                on_release: app.on_press(self)
+            
+        MDLabel:
+            markup: True
+            score_text: app.turn + " GOES FIRST!"
+            id: id_score_label
+            font_size: "32sp"
+            text: "[b][size=30]"+self.score_text+"[/size][/b]"
+            halign: "center"
+            pos_hint: {"center_y":.3}
+        
+        MDButton:
+            id: id_restart_btn
+            pos_hint: {"center_x":.5, "center_y":.15}
+            on_release: app.restart_game()
+            MDButtonText:
+                text: "Restart"

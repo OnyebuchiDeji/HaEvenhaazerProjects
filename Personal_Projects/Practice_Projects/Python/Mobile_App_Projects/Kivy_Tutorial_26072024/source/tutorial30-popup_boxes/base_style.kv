@@ -1,0 +1,57 @@
+#   Factory allows one to define a class and instantiate it anywhere in one's app.
+#:import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+    #   If one clicks outside of the popup when auto_dismiss is True, the popup goes away
+    #   so set it to False to prevent this if not preferred
+    title: "My Popup Box"
+    auto_dismiss: False
+    size_hint: (0.6, 0.3)
+    # pos_hint: {"x": 0.2, "top":0.9}
+    # pos_hint: {"x": 0.2, "top":0.3}
+    pos_hint: {"x": 0.2, "top":1}
+    
+    #   Adding a Label and Button normally causes an Error.
+    #   A popup can have only one Widget immediately within it.
+    #   Solution: Add a Layout within the Popup to put the Label and Button within
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "This is important to consider!"
+            font_size: 24
+        Button:
+            text: "Close Me!" 
+            font_size: 24
+            #   Pree that root refers to this Popup itself.
+            on_release: root.dismiss()
+            size_hint: (1, 0.4)
+            pos_hint: {"center": 1}
+
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+    
+        Label:
+            text: "Popup Stuff"
+            font_size: 32
+        
+        Button:
+            text: "Popup Button"
+            font_size: 32
+            background_normal: ''
+            background_color: (0.25, 0.25, 0.25, 1)
+
+            #   The below cannot be done without the `factory` module.
+            #   this is because everything all within MyLayout can not see
+            #   anything outside it, including the defiition of MyPopup
+            #   And also because its not doing the same as creating a MyPopup
+            #   within MyLayout like how Buttons and Labels are created...
+            #   because then it would work (probably)
+            # on_release: MyPopup().open()
+            ##With Factory, it works this way:
+            on_release: Factory.MyPopup().open()

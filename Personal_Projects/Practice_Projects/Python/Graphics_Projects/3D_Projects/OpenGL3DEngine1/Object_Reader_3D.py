@@ -1,0 +1,5 @@
+
+#
+#
+# class ObjectReader3D:
+#

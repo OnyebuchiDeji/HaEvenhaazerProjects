@@ -1,0 +1,4 @@
+Finished Practical 6 on Sun-3-March-2024
+Last things implemented were admin_form and adduser_script .phps 
+
+I STILL HAVE TO TEST THEM THOUGH!

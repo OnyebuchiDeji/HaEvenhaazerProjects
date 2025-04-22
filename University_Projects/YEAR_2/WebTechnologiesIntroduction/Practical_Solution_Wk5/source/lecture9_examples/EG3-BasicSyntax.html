@@ -1,0 +1,27 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Basic Syntax</title>
+    </head>
+    <body>
+        <?php
+            $x = 45;
+            $y = "Yo!";
+            $z = 'Bro';
+            $EZ = array("apple", "grape");
+
+            echo "Old value of x: " . String($x);    //  prints 45
+
+            echo "X minus 4: " . String($x - 4);    //  Prints 41
+
+
+            $x = "Hello World!" //  Types of variables can change dynamically
+            echo "new value of x: " . $x;
+
+            //  Read only constants:
+            //  They can only be defined using the define funciton, e.g:
+            //define("IMAGE_DIRECTORY", "/usr/local/images");
+            //OR
+            define ("CONSRSTRING", "Rechuvo");
+        ?>
+    </body>
+</html>

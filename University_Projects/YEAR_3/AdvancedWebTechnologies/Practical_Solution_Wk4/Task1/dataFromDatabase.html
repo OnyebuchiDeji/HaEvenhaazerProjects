@@ -1,0 +1,58 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <script>
+            function showUser(str){
+                if (str == ""){
+                    document.getELementById("txtHint").innerHTML = "";
+                    return;
+                }
+                else{
+                    if (window.XMLHttpRequest){
+                        //  Code for IE7+, Firefox, Chrome, OPera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    }
+                    else{
+                        //  Code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function(){
+                        if (this.readyState==4 && this.status==200){
+                            document.getElementById("txtHint").innerHTML += this.responseText;
+                        }
+                    };
+                    var checkBox = document.getElementById("checkBox1");
+                    var checked = checkBox.checked;
+                    let val = "";
+                    if (checked){val = checkBox.value;}
+                    // console.log(val);
+                    let requestUrl =  "getuser.php?q=" + str + "&choice=" + val
+                    // console.log(requestUrl);
+                    xmlhttp.open("GET", requestUrl, true);
+
+                    xmlhttp.send();
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Select a student from the dropdown below:</h1>
+        <form>
+            <label for="users">Select to View All Student's Information</label>
+            <select name="users" onchange="showUser(this.value)">
+                <option value="">Select a Student:</option>
+                <option value="4">Joe Borg</option>
+                <option value="5">Alan Gordon</option>
+                <option value="6">Mary Hoggs</option>
+            </select><br>
+
+            <label for="partialChoice">Select to Only View Name and Address of Student</label>
+            <input type="checkbox" name="partialChoice" value="partial" id="checkBox1"/><br>
+        </form><br>
+
+        <div id="txtHint"><p style="color:Red;">
+            <b>Student's detail information will be shown here.</b>
+        </div>
+
+    </body>
+</html>

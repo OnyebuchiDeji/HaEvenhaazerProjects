@@ -1,0 +1,24 @@
+{% extends "base-template_inheritance.html" %}
+{% block title %} User {% endblock %}
+{% block content %}
+    <!-- Display templated code to display all the flash messages that come up -->
+    {% with messages = get_flashed_messages() %}
+        <!-- To check if there are messages to display and loop through them to display them -->
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form action="#" method="POST">
+    <!--
+        {{email if email}} this receives a variable to template email
+        if the email has a value, it is displayed as the value uinstead of the placeholder...
+        that is, if the user has previously entered an email it is displayed, gotten from the database
+        but if the user has never, it displays the placeholder. 
+    -->
+    <input type="email" name="email" placeholder="Enter Email" value="{{email if email}}"/>
+    <input type="submit" value="submit">
+</form>
+
+{% endblock %}

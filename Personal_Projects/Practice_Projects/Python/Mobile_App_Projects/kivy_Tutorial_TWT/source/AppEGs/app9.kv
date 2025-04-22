@@ -1,0 +1,34 @@
+WindowManager:
+    MainWindow:
+    OtherWindow:
+
+<MainWindow>:
+    name: "Main_Screen"
+  
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: password
+                multiline: False
+
+        Button:
+            text: "Submit"
+            on_release:
+                app.root.current = "Second_Screen" if password.text == "bread" else "Main_Screen"
+                root.manager.transition.direction = "left"
+
+<OtherWindow>:
+    name: "Second_Screen"
+
+    Button:
+        text: "Go Back!"
+        on_release:
+            app.root.current = "Main_Screen"
+            root.manager.transition.direction = "right"

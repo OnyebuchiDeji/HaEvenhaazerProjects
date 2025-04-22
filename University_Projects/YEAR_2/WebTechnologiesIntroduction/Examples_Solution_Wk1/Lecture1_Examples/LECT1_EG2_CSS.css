@@ -1,0 +1,39 @@
+
+.default_scheme{
+    font: bold Georgia;
+    font-style:bold;
+    color:rgb(0, 0, 0);
+}
+
+.headerscheme
+{
+    font: bold Arial;
+    font-style: oblique;
+    font-weight: bold;
+    color: black;
+    font-size:large
+}
+
+#p1
+{
+    font: bold Sans-serif;
+    font-style: italic;
+    color: burlywood;
+    font-size: 17;
+}
+
+
+#p2
+{
+    font: bold Helvetica;
+    font-style: italic;
+    color: rgb(161, 160, 56);
+}
+
+#p3
+{
+    font: bold Helvetica;
+    font-style: italic;
+    color: slateblue;
+}
+

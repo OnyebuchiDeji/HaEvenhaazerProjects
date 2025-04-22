@@ -1,0 +1,58 @@
+<!DOCTYPE html><html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>JQuery Part 1 Exercidse 15</title>
+        <script type="text/javascript"
+        src="https://code.jquery.com/jquery-3.7.1.min.js">
+        </script>
+        <script type="text/javascript">
+            $(function()
+            {
+                $("p").find("em").hover(
+                    function()
+                    {
+                        $("p").css("background", "#33AAEE");
+                    },
+                    function()
+                    {
+                        $("p").css("background", "#FFFFFF");
+                    }
+                );
+                $("div").find("em").hover(
+                    function()
+                    {
+                        $("div").css("background", "#33EEAA");
+                    },
+                    function()
+                    {
+                        $("div").css("background", "#FFFFFF");
+                    }
+                );
+            });
+        </script>
+
+
+
+        <style>
+            #ulist li.green
+            {
+                color: green;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p>
+            The <em>parent()</em> element is used to find the ancestors of each element in the 
+           matched set. It accepts a single argument which is a selector that can be applied to the 
+           ancestors.
+        </p>
+        <div>
+            The <em>parent()</em> element is used to find the ancestors of each element in the 
+           matched set. It accepts a single argument which is a selector that can be applied to the 
+           ancestors.
+            </div>
+           
+           
+    </body>
+</html>

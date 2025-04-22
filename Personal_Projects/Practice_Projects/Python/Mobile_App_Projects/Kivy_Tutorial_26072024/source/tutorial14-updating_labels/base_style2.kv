@@ -1,0 +1,42 @@
+#   This second method does not define the ids at the top of the root class
+#   so in the corresponding Python file, ObjectProperty is not used
+#   to access these objects.
+
+<MyLayout>
+    # fname: fname_id
+    # output_label: output_label_id
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Name"
+                font_size: 32
+            TextInput:
+                id: name_input
+                multiline: False
+                size_hint: (1, .5)
+
+        Button:
+            text: "Submit"
+            size_hint: (1, .5)
+            font_size: 32
+            on_press: root.on_submit(self)
+        
+        Label:
+            id: output_label
+            font_size: 32
+            background_color: (0, 0, 0, 1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            color: (0.2, 0.85, 0.2)

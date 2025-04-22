@@ -1,0 +1,14 @@
+{% extends "base-template_inheritance.html" %}
+{% block title %} User {% endblock %}
+{% block content %}
+    <!-- Display templated code to display all the flash messages that come up -->
+    {% with messages = get_flashed_messages() %}
+        <!-- To check if there are messages to display and loop through them to display them -->
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<p>Welcome, {{user}}</p>
+{% endblock %}

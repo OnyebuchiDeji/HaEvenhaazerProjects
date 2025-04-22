@@ -1,0 +1,88 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>JQuery Effects -Animations</title>
+        <!-- 
+            The animation script is so cool especially because when you press it again, the image transitions in reverse...
+            to disappear
+         -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            // Using jQuery
+            $(function()
+            {
+                $('#clickme').click(function()
+                {
+                    /**
+                     * The animate method has two forms:
+                     * animate(properties, [duration], [easing], [complete])
+                     * OR
+                     * animate(properties, [options])
+                     * The arguments in square brackets are optional.
+                     * 
+                     * For both, the properties argument is the list of CSS properties that will be manipulated for the animation to occur.
+                     * 
+                     * The options argument of the second form is an object (function-like object) that may have the following members:
+                     * 
+                     * duration: string or number determining animation's length
+                     * easing: the rate at which the animation transitions or progresses; the rate of change if the display properties.
+                     * complete: a functiion called after the animation finishes
+                     * step: A function called after each step of the animation.
+                     * queue: A boolean indicating whether to place the animation in the effects queue. If false, the animation begfines immediately
+                     * specialEasing: This is a map (object literal) of one or more of the CSS properties defined by the properties arugment and their...
+                     * corrsponding easing functions.
+                     * 
+                     * The animate() function is just like the show() funciton.
+                     * show([duration], [easing], [callback])
+                     * If the optional argument duration is not put, the attached CSS element will be rendered immediately without any animation.
+                     * The show() method() provides an animation on rendering an element by affecting its CSS elements.
+                     * The hide() method is the opposite of show().
+                     * 
+                     * 
+                    */
+                    $("#pic").animate(
+                        //  Arg 1: properties list of CSS to manipulate
+                        {
+                            opacity: 0.75,
+                            left: '+50',
+                            height: 'toggle'
+                        },
+                        //  Arg2
+                        5000,
+                        //  Arg3
+                        () =>
+                        {
+                            // opacity = 0;
+                            console.log("Animation Complete!");
+                        }
+                    );
+                });
+            });
+        </script>
+
+        <style type="text/css">
+            #pic{
+                display: none;
+                position: absolute;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Blender Image</h2>
+        <img src="../resources/neurosci_syphillis_info.jpg" id="pic">
+        <dl id="dict">
+            <dt>jQuery</dt>
+            <dd>A JavaScript library that enhances development productivity</dd>
+            <dt>jQuery-UI</dt>
+            <dd>A jQuery plugin that provides user-interface widgets</dd>
+            <dt>dojo</dt>
+            <dd>A popular JavaScript library</dd>
+            <dt>PHP</dt>
+            <dd>A server-side scripting language originally known as 'Personal Home Page'</dd>
+            <dt>MySQl</dt>
+            <dd>A relational database commonly used to implement the data tier in web-based application development</dd>
+        </dl>
+
+        <button id="clickme">Click Me</button>
+    </body>
+</html>

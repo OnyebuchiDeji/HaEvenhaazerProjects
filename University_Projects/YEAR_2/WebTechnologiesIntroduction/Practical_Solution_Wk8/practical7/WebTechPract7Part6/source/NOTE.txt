@@ -1,0 +1,27 @@
+Made: Wed-20-March-2024
+
+
+For the Ajax and jquery, specifically the first 2 examples:
+1. To test them I need to use a computer connected to the keele network
+2.  I could not access the php file: getquote.php directly. I had no permissions for this
+3.  I accessed it and requested data from it via the JS scripts gq meaning 'getquote'
+3.  so I do not need to actually access the getquot.php directly.
+
+First, note that for the afore-mentioned examples I neither used Ajax nor JQuery
+From the above, it is shown that a client side program can be used to access a web service.
+In this case, it is a simple service that provides quotes.
+can also do same for services tht offer map, weather information, RSS feeds ,Twitter trends, stock market quotes, google analytics, etc.
+
+But the output from the web service replaces the current page.
+Rather it is preferred that the output is used to update the page.
+This is where Ajax s useful, to update the page even asynchronously, not preventing other operations from being done!
+Ajax allows one to access a remote resourve and to use it to update the current page without refreshing it!
+This has advantages:
+1. Saves bandwidth and latency
+2. Improves user experience
+
+Making an Ajax request uses the XMLHTTPRequest object.
+With this, the browser sends a request for a resource.
+When a response comes, the browser uses the object to pass the response to a callback function...
+to dybamically modify the current page.
+Examples 3 shows this 

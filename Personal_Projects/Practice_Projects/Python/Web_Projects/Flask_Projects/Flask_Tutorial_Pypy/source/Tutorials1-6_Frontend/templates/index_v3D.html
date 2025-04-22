@@ -1,0 +1,19 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>My Home Page - Pypy</title>
+    </head>
+    <body>
+        <h1>Manipulating HTML with Python!</h1>
+
+        <!-- Writing Python Code in inner HTML -->
+        <!-- Receiving a list of items and looping through them and displaying them on page -->
+        <!-- Adding if else -->
+        {% for name in content %}
+            {% if name=="Eben" %}
+                <p>name: <strong>{{name}}</strong></p>
+            {% else %}
+                <p>name: {{name}}</p>
+            {% endif %}
+        {% endfor %}
+    </body>
+</html>

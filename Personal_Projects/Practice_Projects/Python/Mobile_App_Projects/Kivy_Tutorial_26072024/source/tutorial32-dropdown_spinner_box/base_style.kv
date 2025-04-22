@@ -1,0 +1,27 @@
+<MyLayout>
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        #   has to change the sizes of the first Label and Spinner
+        #   so that the Spinner drop-down list will have enough space to display.
+
+        Label:
+            id: click_label
+            text: "Pick Favorite Animal Below."
+            font_size: 24
+            size_hint: (1, 0.6)
+        
+        Spinner:
+            id: spinner_id
+            text: "Favorite Creature"
+            values: ['Sheep', 'Robin', 'Crane', 'Tortoise', 'Angel Fish']
+            font_size: 18
+            size_hint: (1, 0.25)
+            #   Could pass self.text too
+            # on_text: root.spinner_clicked(spinner_id.text)
+        
+        Label:
+            text: ""
+            # font_size: 48
