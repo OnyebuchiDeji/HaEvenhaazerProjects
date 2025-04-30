@@ -5,7 +5,7 @@
  *  This controls resizing responsiveness.
  */
 
-let tnc_Path = "./page_html/";
+let tnc_Path = "./WebSource/page_html/";
 
 
 // const topNavbarResizeToggleButtonHandle = document.getElementById("TopNavbarToggleButton");

@@ -1,4 +1,4 @@
-let thc_Path = "./page_html/";
+let thc_Path = "./WebSource/page_html/";
 
 
 // let themeButtonHandle = document.getElementById("ThemeButton");
